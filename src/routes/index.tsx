@@ -138,7 +138,7 @@ function Login({ onOk }: { onOk: (p: string) => void }) {
           finally { setBusy(false); }
         }}
       >
-        <div className="flex flex-col items-center gap-1 text-primary"><img src={logo} alt="ACTES أكتس" className="h-16 w-auto" /><h1 className="text-xl font-bold">محادثات العملاء</h1></div>
+        <div className="flex flex-col items-center gap-2 text-primary"><BrandMark className="text-[26px] text-foreground" /><h1 className="text-xl font-bold">محادثات العملاء</h1></div>
         <label className="block text-sm text-muted-foreground">كلمة مرور اللوحة</label>
         <div className="relative">
           <Lock className="absolute right-3 top-2.5 h-4 w-4 text-muted-foreground" />
@@ -318,7 +318,7 @@ function Dashboard({ pw, onLogout }: { pw: string; onLogout: () => void }) {
               aria-label={muted ? "تشغيل صوت التنبيه" : "كتم صوت التنبيه"} className="rounded-md p-1.5 hover:bg-ink-foreground/10">
               {muted ? <BellOff className="h-4 w-4" /> : <Bell className="h-4 w-4" />}
             </button>
-            <img src={logoWhite} alt="ACTES أكتس" className="h-9 w-auto shrink-0 md:h-10 lg:h-8" />
+            <BrandMark className="shrink-0 text-[15px] md:text-[16px] lg:text-[14px]" />
           </div>
         </div>
       </header>
