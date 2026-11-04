@@ -415,7 +415,7 @@ function Dashboard({ pw, onLogout }: { pw: string; onLogout: () => void }) {
       </div>
       <footer className="relative overflow-hidden bg-ink py-2.5 lg:hidden text-center text-xs font-semibold text-ink-foreground">
         <div className="pointer-events-none absolute -bottom-6 right-[8%] h-16 w-1.5 rotate-[35deg] bg-primary" />
-        ACTES — لأنظمة الطاقة وحلولها
+        تمكين — لأنظمة الطاقة وحلولها
         <span className="absolute left-6 top-1/2 hidden h-px w-32 -translate-y-1/2 bg-ink-foreground/30 md:block" />
         <span className="absolute left-[9.5rem] top-1/2 hidden -translate-y-1/2 text-primary md:block">⌁</span>
       </footer>
