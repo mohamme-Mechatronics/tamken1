@@ -70,7 +70,7 @@ export async function buildReport(name: string, spec: SystemSpec, site: SiteData
     u: await doc.embedFont(b64(FONT_B64), { subset: true }), logo: await doc.embedPng(b64(LOGO_B64)), pv: await doc.embedPng(b64(PVSYST_LOGO_B64)),
     variant: `Hybrid System ${Math.round(s.kwp)} KWp`,
   };
-  doc.setTitle(`${name} - Simulation report`); doc.setAuthor("ACTES");
+  doc.setTitle(`${name} - Simulation report`); doc.setAuthor("Tamken");
   const invName = `Solis ${spec.kw} kW${spec.three ? " 3-phase" : ""}`;
 
   // 1 — cover

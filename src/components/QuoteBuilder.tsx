@@ -245,7 +245,7 @@ function quoteBody(no: string, cust: { name: string; phone: string; city: string
   <thead><tr><th>م</th><th>الصنف والمواصفات</th><th>الوحدة</th><th>الكمية</th><th>السعر</th><th>الإجمالي</th></tr></thead>
   <tbody>${rows}<tr class="tot"><td colspan="5" class="lbl">الإجمالي الكلي</td><td class="m">${ltr(money(total))}</td></tr></tbody></table>
   <div class="notes"><b>ملاحظات:</b><br>${noteList.map((n, i) => `${i + 1}. ${esc(n)}`).join("<br>")}</div>
-  <table class="ft"><tr><td style="width:56px"><img src="${o}/quote-qr.jpg"></td><td style="text-align:center"><span class="ltr">www.actesgroup.com · info@actesgroup.com</span></td><td style="text-align:left;white-space:nowrap">طبع بواسطة: <span class="ltr">ACTES CRM</span> · <span class="ltr">${stamp}</span></td></tr></table></div>`;
+  <table class="ft"><tr><td style="width:56px"><img src="${o}/quote-qr.jpg"></td><td style="text-align:center"><span class="ltr">Tamken · 777687107</span></td><td style="text-align:left;white-space:nowrap">طبع بواسطة: <span class="ltr">Tamken CRM</span> · <span class="ltr">${stamp}</span></td></tr></table></div>`;
   return { css, html };
 }
 
@@ -434,7 +434,7 @@ export function QuoteBuilder({ pw, initialCustomerId }: { pw: string; initialCus
     if (!src.length) return setMsg("اختر صنفا واحدا على الأقل");
     setBusy(true); setMsg("جارٍ إنشاء ملف PDF...");
     try {
-      const num = no ?? "ACTES-Q-" + Date.now().toString().slice(-6);
+      const num = no ?? "TAMKEN-Q-" + Date.now().toString().slice(-6);
       const url = "";
       const { css, html } = await quoteDoc(num, cust, src, notes);
       const doc = `<!doctype html><html dir="rtl"><head><meta charset="utf-8"><meta name="viewport" content="width=760"><style>body{margin:0;background:#fff;padding:6mm 0}${css}</style></head><body>${html}</body></html>`;
@@ -461,7 +461,7 @@ export function QuoteBuilder({ pw, initialCustomerId }: { pw: string; initialCus
   const doShare = async (toId: string) => {
     setBusy(true); setMsg(null);
     try {
-      const num = no ?? "ACTES-Q-" + Date.now().toString().slice(-6);
+      const num = no ?? "TAMKEN-Q-" + Date.now().toString().slice(-6);
       const b64 = await quotePdfBase64(num, cust, chosen, notes);
       const to = customers.find((c) => c.id === toId);
       await sendA({ data: { pw, id: toId, text: `عرض سعر ${num}`, file_name: `عرض سعر ${num} - ${cust.name || "..........."}.pdf`, mime: "application/pdf", b64 } });
@@ -487,11 +487,11 @@ export function QuoteBuilder({ pw, initialCustomerId }: { pw: string; initialCus
     const tab = ph ? window.open("about:blank", "_blank") : null;
     setBusy(true); setMsg(null);
     try {
-      const num = no ?? "ACTES-Q-" + Date.now().toString().slice(-6);
+      const num = no ?? "TAMKEN-Q-" + Date.now().toString().slice(-6);
       const b64 = await quotePdfBase64(num, cust, chosen, notes);
       if (ph) {
         const { url } = await upPdf({ data: { pw, file_name: `عرض سعر ${num}.pdf`, b64 } });
-        const wa = `https://wa.me/${ph}?text=${encodeURIComponent(`عرض سعر ${num} — ACTES\n${url}`)}`;
+        const wa = `https://wa.me/${ph}?text=${encodeURIComponent(`عرض سعر ${num} — Tamken\n${url}`)}`;
         if (tab) tab.location.href = wa; else window.location.href = wa;
         return;
       }

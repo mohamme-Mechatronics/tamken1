@@ -279,7 +279,7 @@ export const draftVendorQuery = createServerFn({ method: "POST" })
     if (!t) throw new Error("التذكرة غير موجودة");
     const { askAI } = await import("@/lib/ai.server");
     const text = await askAI({
-      instructions: "You are a solar service engineer at ACTES (Yemen distributor). Write a concise, professional technical support inquiry email in English to the manufacturer's after-sales team about this field case. Include: subject line, product/model, fault code or symptom, steps already tried, and specific questions. Do not include customer name or phone. Plain text, under 1200 characters.",
+      instructions: "You are a solar service engineer at Tamken (Yemen distributor). Write a concise, professional technical support inquiry email in English to the manufacturer's after-sales team about this field case. Include: subject line, product/model, fault code or symptom, steps already tried, and specific questions. Do not include customer name or phone. Plain text, under 1200 characters.",
       input: `Ticket ${t.ticket_no}\nDevice: ${t.device ?? ""}\nIssue type: ${t.issue_type ?? ""}\nDescription (Arabic): ${t.description ?? ""}`,
     });
     return { text };

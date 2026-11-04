@@ -55,7 +55,7 @@ export async function buildSld(name: string, spec: SystemSpec, when = new Date()
   const c: C = { p, f: await doc.embedFont(StandardFonts.Helvetica), b: await doc.embedFont(StandardFonts.HelveticaBold) };
   const u = await doc.embedFont(b64(FONT_B64), { subset: true });
   const logo = await doc.embedPng(b64(LOGO_B64));
-  doc.setTitle(`${name} - SLD`); doc.setAuthor("ACTES");
+  doc.setTitle(`${name} - SLD`); doc.setAuthor("Tamken");
   p.drawRectangle({ x: 0, y: 0, width: W, height: H, color: BG });
   const ph = d.three ? "3PH" : "1PH";
   const lw = 80, lh = (logo.height / logo.width) * lw;
@@ -156,7 +156,7 @@ export async function buildSld(name: string, spec: SystemSpec, when = new Date()
   line(c, px, ge, px, ge + 18, EARTH, 1.2);
   [16, 10, 5].forEach((w, i) => line(c, px - w, ge + 18 + i * 4, px + w, ge + 18 + i * 4, EARTH, 1.2));
   t(c, "EARTHING PIT < 5 Ω".replace("Ω", "ohm"), px, ge + 44, 6, EARTH, false, "c");
-  t(c, "ACTES — auto-generated SLD. Cable lengths assumed; verify on site before installation.", 28, H - 10, 5.5, MUTED);
+  t(c, "Tamken — auto-generated SLD. Cable lengths assumed; verify on site before installation.", 28, H - 10, 5.5, MUTED);
 
   return doc.save();
 }
