@@ -1,6 +1,7 @@
 # Roadmap
 
-- [ ] Replace the dashboard's previous editable bot path with the uploaded Tamkeen v51 workflow; verify displayed texts and integration compatibility.
+- [x] Replace the dashboard's previous editable bot path with the uploaded Tamkeen v51 inventory; verify pump section and saved edits read back after reload.
+- [ ] Enable live n8n consumption of BOT_TEXTS/BOT_STEPS for uploaded v51 — blocked: no connected n8n service is available; uploaded workflow lacks the text/step overlay.
 
 - [x] Delete «يحتاج مخطط» from the chat filter bar
 - [x] Move «يحتاج موظف» next to «الكل» in the chat filter bar
