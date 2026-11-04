@@ -1,7 +1,7 @@
 import { useEffect, useState, type ReactNode } from "react";
 import { Lock } from "lucide-react";
 
-const PIN = "2027";
+const PIN = "777687";
 const KEY = "actes_flow_unlocked";
 
 export function FlowPinGate({ children }: { children: ReactNode }) {
