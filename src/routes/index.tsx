@@ -47,9 +47,9 @@ import { BrandMark } from "@/components/BrandMark";
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "ACTES — لوحة محادثات عملاء البوت" },
-      { name: "description", content: "عرض أرقام ومحادثات جميع عملاء بوت واتساب ACTES للطاقة الشمسية." },
-      { property: "og:title", content: "ACTES — لوحة محادثات عملاء البوت" },
+      { title: "تمكين Tamken — لوحة محادثات عملاء البوت" },
+      { name: "description", content: "عرض أرقام ومحادثات جميع عملاء بوت واتساب تمكين للطاقة الشمسية." },
+      { property: "og:title", content: "تمكين Tamken — لوحة محادثات عملاء البوت" },
       { property: "og:description", content: "متابعة العملاء وعروض الأسعار ومخططات SLD من مكان واحد." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary" },
@@ -99,7 +99,7 @@ function exportCsv(rows: { name: string | null; phone: string; city: string | nu
   const blob = new Blob(["\uFEFF" + [head.map(esc).join(","), ...lines].join("\r\n")], { type: "text/csv;charset=utf-8" });
   const a = document.createElement("a");
   a.href = URL.createObjectURL(blob);
-  a.download = `ACTES-عملاء-${new Date().toISOString().slice(0, 10)}.csv`;
+  a.download = `Tamken-عملاء-${new Date().toISOString().slice(0, 10)}.csv`;
   a.click();
   URL.revokeObjectURL(a.href);
 }
