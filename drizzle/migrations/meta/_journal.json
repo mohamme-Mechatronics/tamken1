@@ -29,6 +29,13 @@
       "when": 1793565949528,
       "tag": "0003_app_settings_text_value",
       "breakpoints": true
+    },
+    {
+      "idx": 4,
+      "version": "7",
+      "when": 1793809095258,
+      "tag": "0004_import_actes_schema",
+      "breakpoints": true
     }
   ]
 }
