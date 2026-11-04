@@ -1,0 +1,41 @@
+{
+  "version": "7",
+  "dialect": "postgresql",
+  "entries": [
+    {
+      "idx": 0,
+      "version": "7",
+      "when": 1793548472974,
+      "tag": "0000_import_actes_schema",
+      "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "7",
+      "when": 1793561089254,
+      "tag": "0001_bot_texts",
+      "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "7",
+      "when": 1793561958717,
+      "tag": "0002_bot_steps",
+      "breakpoints": true
+    },
+    {
+      "idx": 3,
+      "version": "7",
+      "when": 1793565949528,
+      "tag": "0003_app_settings_text_value",
+      "breakpoints": true
+    },
+    {
+      "idx": 4,
+      "version": "7",
+      "when": 1793809095258,
+      "tag": "0004_import_actes_schema",
+      "breakpoints": true
+    }
+  ]
+}
