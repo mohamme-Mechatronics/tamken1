@@ -616,9 +616,10 @@ export const listBotTexts = createServerFn({ method: "POST" })
   .handler(async ({ data }) => {
     check(data.pw);
     const { supabaseAdmin } = await import("@/lib/db.server");
-    const { data: rows, error } = await supabaseAdmin.from("bot_texts").select("key,value,desc_value,updated_at");
+    const { data: rows, error } = await supabaseAdmin.from("bot_texts").select("key,original,value,desc_value,updated_at");
     if (error) throw new Error(error.message);
-    return rows;
+    const { activeBotTextEdits } = await import("@/lib/bot-flow-catalog");
+    return activeBotTextEdits(rows ?? []);
   });
 
 export const saveBotText = createServerFn({ method: "POST" })
