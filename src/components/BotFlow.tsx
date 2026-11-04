@@ -6,14 +6,14 @@ import { listBotTexts, saveBotText, listBotSteps } from "@/lib/crm.functions";
 import { StepEditor, StepCard } from "@/components/BotSteps";
 import { Plus } from "lucide-react";
 import { offlineQuery } from "@/lib/offline-cache";
-import ALL from "@/lib/bot-texts.json";
+import { BOT_FLOW_TEXTS, botFlowDefault } from "@/lib/bot-flow-catalog";
 
 type T = { k: string; m: string; t: string; s: string; o: string; b?: string; d?: string };
-const TEXTS = ALL as T[];
-const ORDER = ["الترحيب والقائمة الرئيسية", "السكني", "التجاري", "الصناعي", "التخزين", "عرض السعر", "تعديل المنظومة", "طلب أصناف", "الموقع والمدينة", "دراسة PVsyst", "مخطط SLD", "التقارير", "الشراء والدفع", "التواصل مع المبيعات", "الدعم الفني", "رسائل الانتظار", "أزرار الرجوع", "رسائل عامة", "رسائل أخرى"];
+const TEXTS = BOT_FLOW_TEXTS.map((r) => ({ ...r, o: botFlowDefault(r.o) }));
+const ORDER = ["الترحيب والقائمة الرئيسية", "السكني", "التجاري", "الصناعي", "الغطاسات والآبار الزراعية", "التخزين", "عرض السعر", "تعديل المنظومة", "طلب أصناف", "الموقع والمدينة", "دراسة PVsyst", "مخطط SLD", "التقارير", "الشراء والدفع", "التواصل مع المبيعات", "الدعم الفني", "رسائل الانتظار", "أزرار الرجوع", "رسائل عامة", "رسائل أخرى"];
 
 // Keep the original leading/trailing spaces and line breaks so the message layout stays intact.
-const edges = (s: string) => { const m = s.match(/^(\s*)([\s\S]*?)(\s*)$/)!; return [m[1] ?? "", m[2] ?? "", m[3] ?? ""] as const; };
+const edges = (s: string) => { const m = s.match(/^(\s*)([\s\S]*?)(\s*)$/); return [m?.[1] ?? "", m?.[2] ?? s, m?.[3] ?? ""] as const; };
 
 function Field({ row, saved, onSave }: { row: T; saved: { value: string | null; desc_value: string | null } | undefined; onSave: (v: string | null, d: string | null) => Promise<void> }) {
   const [lead, core, trail] = edges(row.o);
@@ -67,12 +67,13 @@ export function BotFlow({ pw }: { pw: string }) {
     const bySec = new Map<string, Map<string, T[]>>();
     for (const r of TEXTS) {
       if (!bySec.has(r.s)) bySec.set(r.s, new Map());
-      const g = bySec.get(r.s)!;
+      const g = bySec.get(r.s);
+      if (!g) continue;
       if (!g.has(r.m)) g.set(r.m, []);
-      g.get(r.m)!.push(r);
+      g.get(r.m)?.push(r);
     }
     return ORDER.filter((s) => bySec.has(s)).map((s) => {
-      const msgs = [...bySec.get(s)!.values()].filter((ms) => ms.some(hit));
+      const msgs = [...(bySec.get(s)?.values() ?? [])].filter((ms) => ms.some(hit));
       return { s, msgs, edited: msgs.flat().filter((r) => saved.has(r.k)).length };
     }).filter((x) => x.msgs.length);
   }, [q, saved]);

@@ -33,16 +33,25 @@ export const Route = createFileRoute("/api/public/bot-catalog")({
         const { data: st } = await supabaseAdmin.from("app_settings").select("value").eq("key", "kwh_price").maybeSingle();
         const kwh_price = st ? Number(st.value) : 290;
         // Edited bot texts from the "المسار" screen: TEXT = [original fragment, new], BTN = [button id, original title, new title, new desc].
-        const { data: bt } = await supabaseAdmin.from("bot_texts").select("kind,original,value,btn_id,desc_value");
+        const { data: bt } = await supabaseAdmin.from("bot_texts").select("key,kind,original,value,btn_id,desc_value");
+        const { BOT_FLOW_TEXTS, botFlowDefault, activeBotTextEdits } = await import("@/lib/bot-flow-catalog");
         const BOT_TEXTS = { TEXT: [] as [string, string][], BTN: [] as [string, string, string | null, string | null][] };
-        for (const r of bt ?? []) {
+        const activeEdits = activeBotTextEdits(bt ?? []);
+        const overridden = new Set(activeEdits.map((r) => r.key));
+        for (const r of BOT_FLOW_TEXTS) {
+          const value = botFlowDefault(r.o);
+          if (value === r.o || overridden.has(r.k)) continue;
+          if (r.t === "b") BOT_TEXTS.BTN.push([r.b ?? "", r.o, value, null]);
+          else BOT_TEXTS.TEXT.push([r.o, value]);
+        }
+        for (const r of activeEdits) {
           if (r.kind === "button") BOT_TEXTS.BTN.push([r.btn_id ?? "", r.original, r.value, r.desc_value]);
           else if (r.value != null) BOT_TEXTS.TEXT.push([r.original, r.value]);
         }
         BOT_TEXTS.TEXT.sort((a, b) => b[0].length - a[0].length);
         // Added steps: shown when the customer presses trigger_id (title matched against original or edited title).
         const { data: steps } = await supabaseAdmin.from("bot_steps").select("id,trigger_id,trigger_title,body,kind,list_button,options").eq("active", true);
-        const BOT_STEPS = (steps ?? []).map((s) => {
+        const BOT_STEPS = (steps ?? []).filter((s) => !s.trigger_id || BOT_FLOW_TEXTS.some((r) => r.t === "b" && r.b === s.trigger_id && (r.o === s.trigger_title || botFlowDefault(r.o) === s.trigger_title))).map((s) => {
           const edited = BOT_TEXTS.BTN.find((b) => b[0] === s.trigger_id && b[1] === s.trigger_title)?.[2];
           return { ...s, trigger_titles: [s.trigger_title, edited].filter(Boolean) };
         });
