@@ -6,7 +6,6 @@ import { Search, FilePlus2, Save, Minus, Plus, Trash2, Check, Zap, Battery, Sun,
 import { listCatalog, listCustomers, saveQuote, listQuotes, sendAttachment, ensureCustomerByPhone, uploadQuotePdf, getKwhPrice, setKwhPrice } from "@/lib/crm.functions";
 import { offlineQuery } from "@/lib/offline-cache";
 import { BOT_PRESETS } from "@/lib/bot-presets";
-import logoClean from "@/assets/actes-logo-clean.png";
 
 type Row = Awaited<ReturnType<typeof listCatalog>>[number];
 type Line = { key: string; name: string; unit: string | null; price: number; qty: number; specs: string[]; auto?: boolean };
