@@ -255,4 +255,5 @@
   --color-s-gray: var(--s-gray);
   --color-s-red: var(--primary);
   --font-sans: "IBM Plex Sans Arabic", system-ui, sans-serif;
+  --font-brand: "Archivo Black", "IBM Plex Sans Arabic", system-ui, sans-serif;
 }
