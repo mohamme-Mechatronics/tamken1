@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { Settings, X } from "lucide-react";
 import { useServerFn } from "@tanstack/react-start";
 import { getFrontendUrl, saveFrontendUrl, testFrontendUrl } from "@/lib/crm.functions";
+import { BotArrivalTest } from "@/components/BotArrivalTest";
 
 export function ConnectionSettings({ pw }: { pw: string }) {
   const [open, setOpen] = useState(false);
@@ -34,7 +35,7 @@ export function ConnectionSettings({ pw }: { pw: string }) {
       </button>
       {open && (
         <div dir="rtl" className="fixed inset-0 z-50 flex items-center justify-center bg-foreground/40 p-4" onClick={() => setOpen(false)}>
-          <div className="w-full max-w-md space-y-3 rounded-xl border border-border bg-card p-4 text-card-foreground shadow-lg" onClick={(e) => e.stopPropagation()}>
+          <div className="max-h-[90dvh] w-full max-w-md space-y-3 overflow-y-auto rounded-xl border border-border bg-card p-4 text-card-foreground shadow-lg" onClick={(e) => e.stopPropagation()}>
             <div className="flex items-center justify-between">
               <h2 className="font-bold">إعدادات الاتصال</h2>
               <button onClick={() => setOpen(false)} aria-label="إغلاق"><X className="h-4 w-4" /></button>
@@ -48,6 +49,7 @@ export function ConnectionSettings({ pw }: { pw: string }) {
               <button disabled={busy} onClick={() => run(() => save({ data: { pw, url } }))} className="flex-1 rounded-lg bg-primary px-3 py-2 text-sm font-semibold text-primary-foreground disabled:opacity-50">حفظ التغييرات</button>
               <button disabled={busy} onClick={() => run(() => save({ data: { pw, url: def, reset: true } }))} className="w-full rounded-lg border border-border px-3 py-2 text-sm disabled:opacity-50">استعادة الرابط الافتراضي</button>
             </div>
+            <BotArrivalTest pw={pw} />
           </div>
         </div>
       )}
