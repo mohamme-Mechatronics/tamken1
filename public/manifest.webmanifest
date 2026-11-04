@@ -1,7 +1,7 @@
 {
-  "name": "ACTES CRM",
-  "short_name": "ACTES CRM",
-  "description": "لوحة محادثات وأرقام عملاء بوت ACTES على واتساب",
+  "name": "Tamken CRM",
+  "short_name": "Tamken CRM",
+  "description": "لوحة محادثات وأرقام عملاء بوت تمكين على واتساب",
   "id": "/",
   "start_url": "/",
   "scope": "/",
