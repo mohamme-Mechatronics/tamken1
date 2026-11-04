@@ -1,5 +1,8 @@
 # Roadmap
 
+- [x] Add receiver simulation in Connection Settings: POST test bot message, display exact read-back/time/status, clean temporary data; verified desktop/mobile and four tests.
+- [ ] Send the practical test from n8n itself — blocked: n8n connection declined; no safe test webhook exists in uploaded workflow.
+
 - [x] Replace the dashboard's previous editable bot path with the uploaded Tamkeen v51 inventory; verify pump section and saved edits read back after reload.
 - [ ] Enable live n8n consumption of BOT_TEXTS/BOT_STEPS for uploaded v51 — blocked: no connected n8n service is available; uploaded workflow lacks the text/step overlay.
 
