@@ -1,5 +1,7 @@
 # Roadmap
 
+- [ ] Replace the dashboard's previous editable bot path with the uploaded Tamkeen v51 workflow; verify displayed texts and integration compatibility.
+
 - [x] Delete «يحتاج مخطط» from the chat filter bar
 - [x] Move «يحتاج موظف» next to «الكل» in the chat filter bar
 - [x] Publish so the filter-bar changes reach the public site
