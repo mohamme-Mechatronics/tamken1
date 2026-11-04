@@ -41,10 +41,8 @@ import { QuoteBuilder } from "@/components/QuoteBuilder";
 import { FilePlus2, FileBarChart, Route as RouteIcon } from "lucide-react";
 import { BotFlow } from "@/components/BotFlow";
 import { Reports, useReports } from "@/components/Reports";
-import logo from "@/assets/actes-logo.png";
-import logoClean from "@/assets/actes-logo-clean.png";
-import logoWhite from "@/assets/actes-logo-white.png";
 import waBg from "@/assets/actes-wa-bg.png.asset.json";
+import { BrandMark } from "@/components/BrandMark";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -138,7 +136,7 @@ function Login({ onOk }: { onOk: (p: string) => void }) {
           finally { setBusy(false); }
         }}
       >
-        <div className="flex flex-col items-center gap-1 text-primary"><img src={logo} alt="ACTES أكتس" className="h-16 w-auto" /><h1 className="text-xl font-bold">محادثات العملاء</h1></div>
+        <div className="flex flex-col items-center gap-2 text-primary"><BrandMark className="text-[26px] text-foreground" /><h1 className="text-xl font-bold">محادثات العملاء</h1></div>
         <label className="block text-sm text-muted-foreground">كلمة مرور اللوحة</label>
         <div className="relative">
           <Lock className="absolute right-3 top-2.5 h-4 w-4 text-muted-foreground" />
@@ -318,7 +316,7 @@ function Dashboard({ pw, onLogout }: { pw: string; onLogout: () => void }) {
               aria-label={muted ? "تشغيل صوت التنبيه" : "كتم صوت التنبيه"} className="rounded-md p-1.5 hover:bg-ink-foreground/10">
               {muted ? <BellOff className="h-4 w-4" /> : <Bell className="h-4 w-4" />}
             </button>
-            <img src={logoWhite} alt="ACTES أكتس" className="h-9 w-auto shrink-0 md:h-10 lg:h-8" />
+            <BrandMark className="shrink-0 text-[15px] md:text-[16px] lg:text-[14px]" />
           </div>
         </div>
       </header>
@@ -405,7 +403,7 @@ function Dashboard({ pw, onLogout }: { pw: string; onLogout: () => void }) {
               <div className="relative flex aspect-[9/19] h-full flex-col items-center justify-center gap-3 overflow-hidden rounded-[2.6rem] border-[10px] border-phone bg-phone text-wa-muted shadow-2xl">
                 <div className="absolute left-1/2 top-1.5 h-5 w-24 -translate-x-1/2 rounded-full bg-background/10" />
                 <div className="pointer-events-none absolute inset-0 bg-gradient-to-br from-wa-text/10 via-transparent to-transparent" />
-                <img src={logoWhite} alt="" className="h-14 w-auto opacity-90" />
+                <BrandMark className="text-[20px] text-wa-text opacity-90" />
                 <MessageCircle className="h-8 w-8 opacity-40" />
                 <span className="px-6 text-center text-xs opacity-60">اختر محادثة من القائمة لعرضها هنا</span>
               </div>
@@ -417,7 +415,7 @@ function Dashboard({ pw, onLogout }: { pw: string; onLogout: () => void }) {
       </div>
       <footer className="relative overflow-hidden bg-ink py-2.5 lg:hidden text-center text-xs font-semibold text-ink-foreground">
         <div className="pointer-events-none absolute -bottom-6 right-[8%] h-16 w-1.5 rotate-[35deg] bg-primary" />
-        ACTES — لأنظمة الطاقة وحلولها
+        تمكين — لأنظمة الطاقة وحلولها
         <span className="absolute left-6 top-1/2 hidden h-px w-32 -translate-y-1/2 bg-ink-foreground/30 md:block" />
         <span className="absolute left-[9.5rem] top-1/2 hidden -translate-y-1/2 text-primary md:block">⌁</span>
       </footer>
