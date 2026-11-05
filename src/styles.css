@@ -143,35 +143,35 @@
   }
 }
 
-/* ACTES CRM theme */
+/* Tamken theme: deep teal + solar gold */
 :root {
-  --background: oklch(0.975 0.004 260);
-  --foreground: oklch(0.22 0.03 200);
+  --background: oklch(0.978 0.008 190);
+  --foreground: oklch(0.24 0.04 220);
   --card: oklch(1 0 0);
-  --card-foreground: oklch(0.22 0.03 200);
+  --card-foreground: oklch(0.24 0.04 220);
   --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.22 0.03 200);
-  --primary: oklch(0.57 0.23 25);
+  --popover-foreground: oklch(0.24 0.04 220);
+  --primary: oklch(0.52 0.11 195);
   --primary-foreground: oklch(0.99 0 0);
-  --ink: oklch(0.22 0.02 260);
+  --ink: oklch(0.27 0.06 225);
   --ink-foreground: oklch(0.98 0 0);
   --s-purple: oklch(0.42 0.14 305);
   --s-green: oklch(0.6 0.13 165);
   --s-blue: oklch(0.62 0.16 255);
   --s-gray: oklch(0.5 0.03 255);
-  --secondary: oklch(0.94 0.02 180);
+  --secondary: oklch(0.94 0.03 190);
   --secondary-foreground: oklch(0.3 0.05 190);
-  --muted: oklch(0.95 0.01 95);
+  --muted: oklch(0.955 0.012 195);
   --muted-foreground: oklch(0.5 0.02 200);
-  --accent: oklch(0.8 0.15 75);
+  --accent: oklch(0.82 0.16 80);
   --accent-foreground: oklch(0.25 0.05 60);
-  --border: oklch(0.9 0.01 120);
-  --input: oklch(0.9 0.01 120);
-  --ring: oklch(0.57 0.23 25);
+  --border: oklch(0.91 0.015 200);
+  --input: oklch(0.91 0.015 200);
+  --ring: oklch(0.52 0.11 195);
   --bubble-in: oklch(1 0 0);
   --bubble-out: oklch(0.93 0.05 150);
   --bubble-agent: oklch(0.94 0.06 85);
-  --chat-bg: oklch(0.94 0.015 95);
+  --chat-bg: oklch(0.95 0.015 190);
   --st-quote: oklch(0.93 0.08 75);
   --st-quote-fg: oklch(0.42 0.11 60);
   --st-buy: oklch(0.9 0.1 155);
@@ -190,9 +190,9 @@
   --card-foreground: oklch(0.94 0.01 95);
   --popover: oklch(0.22 0.025 205);
   --popover-foreground: oklch(0.94 0.01 95);
-  --primary: oklch(0.6 0.21 25);
+  --primary: oklch(0.66 0.12 190);
   --primary-foreground: oklch(0.99 0 0);
-  --ink: oklch(0.13 0.015 260);
+  --ink: oklch(0.14 0.03 225);
   --ink-foreground: oklch(0.98 0 0);
   --s-purple: oklch(0.6 0.14 305);
   --s-green: oklch(0.65 0.13 165);
@@ -206,7 +206,7 @@
   --accent-foreground: oklch(0.2 0.04 60);
   --border: oklch(1 0 0 / 10%);
   --input: oklch(1 0 0 / 15%);
-  --ring: oklch(0.6 0.09 185);
+  --ring: oklch(0.66 0.12 190);
   --bubble-in: oklch(0.26 0.02 205);
   --bubble-out: oklch(0.36 0.06 165);
   --bubble-agent: oklch(0.36 0.06 75);
