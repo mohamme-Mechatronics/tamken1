@@ -313,15 +313,6 @@ function Dashboard({ pw, onLogout }: { pw: string; onLogout: () => void }) {
               محادثات العملاء
             </h1>
           </div>
-          <nav className="order-last -mx-4 flex w-[calc(100%+2rem)] snap-x items-center gap-2 overflow-x-auto px-4 pb-1 pt-2 [scrollbar-width:none] md:order-none md:mx-0 md:w-auto md:flex-1 md:justify-center md:px-0 [&::-webkit-scrollbar]:hidden">
-            {tabs.map((t) => (
-              <button key={t.k} onClick={() => { setView(t.k); if (t.k !== "chats") setOpenId(null); }}
-                className={`relative flex shrink-0 snap-start items-center gap-2 whitespace-nowrap rounded-full border px-4 py-2 text-xs font-bold transition-all duration-200 md:text-sm ${view === t.k ? "border-accent bg-accent text-accent-foreground shadow-lg shadow-accent/30" : "border-ink-foreground/15 bg-ink-foreground/5 text-ink-foreground/85 hover:border-accent/50 hover:bg-ink-foreground/10"}`}>
-                <t.i className="h-4 w-4" />{t.l}
-                {t.n > 0 && <span className="absolute -top-1.5 left-0 min-w-5 rounded-full bg-destructive px-1.5 text-center text-[10px] font-bold text-destructive-foreground ring-2 ring-ink">{t.n}</span>}
-              </button>
-            ))}
-          </nav>
           <div className="flex shrink-0 items-center gap-1">
             <ConnectionSettings pw={pw} />
             <button onClick={toggleDark} aria-label={dark ? "الوضع الفاتح" : "الوضع الليلي"} className="rounded-md p-1.5 hover:bg-ink-foreground/10">
