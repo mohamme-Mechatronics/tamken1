@@ -289,7 +289,7 @@ body {
 }
 /* thin two-tone rule: solar gold fading into the brand red — used on the bar edges */
 @utility edge-rule {
-  background-image: linear-gradient(90deg, transparent 0%, color-mix(in oklab, var(--accent) 70%, transparent) 34%, color-mix(in oklab, var(--brand-red) 80%, transparent) 82%, transparent 100%);
+  background-image: linear-gradient(90deg, transparent 0%, color-mix(in oklab, var(--accent) 85%, transparent) 30%, color-mix(in oklab, var(--brand-red) 95%, transparent) 80%, transparent 100%);
 }
 /* hidden side drawer: panel slides in from the right, backdrop fades in */
 @utility drawer-in {
