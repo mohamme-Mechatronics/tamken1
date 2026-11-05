@@ -33,6 +33,8 @@ export default defineConfig({
         devOptions: { enabled: false },
         workbox: {
           globPatterns: ["**/*.{js,css,woff2,png,svg,ico,webp,jpg}"],
+          // Bot media (product photos, intro video) is only fetched by WhatsApp/Telegram, never by the dashboard.
+          globIgnores: ["**/bot/**", "**/datasheets/**"],
           // Build output lives under client/, but the site serves it from the root.
           modifyURLPrefix: { "client/": "/" },
           navigateFallback: null,

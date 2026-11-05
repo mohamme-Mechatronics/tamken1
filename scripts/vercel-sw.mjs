@@ -9,7 +9,7 @@ writeFileSync("dist/client/app-version.json", JSON.stringify({ version }));
 const { count } = await generateSW({
   globDirectory: "dist/client",
   globPatterns: ["**/*.{js,css,woff2,png,svg,ico,webp,jpg}"],
-  globIgnores: ["datasheets/**"],
+  globIgnores: ["datasheets/**", "bot/**"],
   swDest: "dist/client/sw.js",
   skipWaiting: true,
   clientsClaim: true,
