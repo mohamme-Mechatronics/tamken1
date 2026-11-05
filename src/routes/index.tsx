@@ -60,7 +60,14 @@ export const Route = createFileRoute("/")({
 
 const PW_KEY = "actes_pw";
 
+// علامة القناة الصغيرة فوق كل محادثة
+const CHAN: Record<string, { label: string; Icon: typeof MessageCircle; cls: string }> = {
+  whatsapp: { label: "واتساب", Icon: MessageCircle, cls: "bg-primary/10 text-primary ring-primary/25" },
+  telegram: { label: "تلجرام", Icon: Send, cls: "bg-accent/25 text-accent-foreground ring-accent/45" },
+};
+
 const stageClass: Record<string, string> = {
+  new: "bg-muted text-muted-foreground",
   quote: "bg-st-quote text-st-quote-fg",
   sld: "bg-st-sld text-st-sld-fg",
   cod: "bg-st-cod text-st-cod-fg",
