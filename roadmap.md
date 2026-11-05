@@ -41,3 +41,4 @@
 - [x] سؤال إلغاء Backend: أُجيب (لا يُلغى، Vercel يعتمد عليه)
 
 - [x] Bot chat tab: send user message to n8n production webhook as {"message"}, wait for reply, show it; publish
+- [ ] Edit bot workflow file so webhook 9522a34f… replies to the dashboard chat (Respond to Webhook) and links to the dashboard
