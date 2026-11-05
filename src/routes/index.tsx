@@ -287,7 +287,7 @@ function Dashboard({ pw, onLogout }: { pw: string; onLogout: () => void }) {
       <FrontendRedirect />
       {!online && (
         <div className="bg-accent px-3 py-1 text-center text-xs font-semibold text-accent-foreground">
-          أنت دون إنترنت — {savedAt ? `تعرض آخر نسخة محفوظة على الجهاز من {new Date(savedAt).toLocaleString("ar", { dateStyle: "short", timeStyle: "short" })}` : "لم تُحفظ نسخة على الجهاز بعد — افتح التطبيق مرة واحدة والإنترنت شغّال"}، وتتحدث تلقائياُ عند عودة الاتصال
+          أنت دون إنترنت — {savedAt ? `تعرض آخر نسخة محفوظة على الجهاز من ${new Date(savedAt).toLocaleString("ar", { dateStyle: "short", timeStyle: "short" })}` : "لم تُحفظ نسخة على الجهاز بعد — افتح التطبيق مرة واحدة والإنترنت شغّال"}، وتتحدث تلقائياُ عند عودة الاتصال
         </div>
       )}
       <header className="relative overflow-hidden bg-ink px-4 py-3 text-ink-foreground md:px-8 lg:py-1">
