@@ -43,7 +43,6 @@ import { BotFlow } from "@/components/BotFlow";
 import { Reports, useReports } from "@/components/Reports";
 import waBg from "@/assets/actes-wa-bg.png.asset.json";
 import { BrandMark } from "@/components/BrandMark";
-import { BotChat } from "@/components/BotChat";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -209,7 +208,7 @@ function Dashboard({ pw, onLogout }: { pw: string; onLogout: () => void }) {
   const [q, setQ] = useState("");
   const [filter, setFilter] = useState<Stage | "all">("all");
   const [openId, setOpenId] = useState<string | null>(null);
-  const [view, setView] = useState<"chats" | "orders" | "reports" | "tickets" | "catalog" | "quote" | "flow" | "botchat">("chats");
+  const [view, setView] = useState<"chats" | "orders" | "reports" | "tickets" | "catalog" | "quote" | "flow">("chats");
   const { data: rep } = useReports(pw);
   const pendingReports = (rep?.requests ?? []).filter((r) => r.status === "pending").length;
   const { data: tickets = [] } = useTickets(pw);
@@ -281,7 +280,6 @@ function Dashboard({ pw, onLogout }: { pw: string; onLogout: () => void }) {
     { k: "catalog" as const, l: "الأصناف", i: LayoutGrid, n: 0 },
     { k: "quote" as const, l: "إنشاء عرض سعر", i: FilePlus2, n: 0 },
     { k: "flow" as const, l: "المسار", i: RouteIcon, n: 0 },
-    { k: "botchat" as const, l: "محادثة البوت", i: Bot, n: 0 },
   ];
 
   return (
@@ -329,7 +327,6 @@ function Dashboard({ pw, onLogout }: { pw: string; onLogout: () => void }) {
         : view === "reports" ? <div className="rounded-xl border border-border bg-card lg:min-h-0 lg:flex-1 lg:overflow-y-auto"><Reports pw={pw} /></div>
         : view === "tickets" ? <div className="rounded-xl border border-border bg-card lg:min-h-0 lg:flex-1 lg:overflow-y-auto"><Tickets pw={pw} /></div>
         : view === "catalog" ? <div className="rounded-xl border border-border bg-card lg:min-h-0 lg:flex-1 lg:overflow-y-auto"><Catalog pw={pw} /></div>
-        : view === "botchat" ? <div className="overflow-hidden rounded-xl border border-border bg-card lg:min-h-0 lg:flex-1"><BotChat pw={pw} /></div>
         : view === "flow" ? <div className="rounded-xl border border-border bg-card lg:min-h-0 lg:flex-1 lg:overflow-y-auto"><FlowPinGate><BotFlow pw={pw} /></FlowPinGate></div>
         : view === "quote" ? <div className="rounded-xl border border-border bg-background lg:min-h-0 lg:flex-1 lg:overflow-hidden"><QuoteBuilder pw={pw} /></div> : <>
         <div className="lg:grid lg:min-h-0 lg:flex-1 lg:grid-cols-[minmax(0,1fr)_auto] lg:gap-3">
