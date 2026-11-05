@@ -214,7 +214,7 @@ function quoteBody(no: string, cust: { name: string; phone: string; city: string
   .qt .info .val{font-weight:700}
   .qt .info .gap{width:24px}
   .qt .items{width:100%;border-collapse:collapse;table-layout:fixed}
-  .qt .items th{background:#0e7c86;color:#fff;font-weight:700;font-size:12px;border:1px solid #0a5f67;padding:6px 4px;text-align:center}
+  .qt .items th{background:#1e3a8a;color:#fff;font-weight:700;font-size:12px;border:1px solid #172e6e;padding:6px 4px;text-align:center}
   .qt .items td{border:1px solid #bdbdbd;vertical-align:top;padding:7px 6px}
   .qt .items tr.it:nth-child(even) td{background:#fafafa}
   .qt td.c{text-align:center;font-weight:700}
@@ -227,10 +227,10 @@ function quoteBody(no: string, cust: { name: string; phone: string; city: string
   .qt tr{page-break-inside:avoid}
   .qt .tot td{font-weight:800;font-size:13px;padding:8px 6px;border:1px solid #bdbdbd}
   .qt .tot .lbl{background:#f1f1f1;text-align:left}
-  .qt .tot td.m{color:#0e7c86;background:#fff}
+  .qt .tot td.m{color:#1e3a8a;background:#fff}
   .qt .notes{font-size:10px;margin-top:10px;line-height:1.8}
-  .qt .notes b{color:#0e7c86}
-  .qt .ft{width:100%;border-collapse:collapse;margin-top:18px;border-top:1.5px solid #0e7c86;font-size:9px;color:#444}
+  .qt .notes b{color:#1e3a8a}
+  .qt .ft{width:100%;border-collapse:collapse;margin-top:18px;border-top:1.5px solid #1e3a8a;font-size:9px;color:#444}
   .qt .ft td{padding:6px 4px 0;vertical-align:middle}
   .qt .ft img{height:46px;display:block}`;
   const info = (l: string, v: string) => `<td class="l">${l}</td><td class="val">${v}</td>`;
