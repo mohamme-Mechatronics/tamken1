@@ -62,7 +62,7 @@ const PW_KEY = "actes_pw";
 
 // علامة القناة الصغيرة فوق كل محادثة
 const CHAN = {
-  whatsapp: { label: "واتساب", Icon: MessageCircle, cls: "bg-primary/10 text-primary ring-primary/25" },
+  whatsapp: { label: "واتساب", Icon: MessageCircle, cls: "bg-muted text-muted-foreground ring-border" },
   telegram: { label: "تلجرام", Icon: Send, cls: "bg-accent/25 text-accent-foreground ring-accent/45" },
 };
 
@@ -309,17 +309,17 @@ function Dashboard({ pw, onLogout }: { pw: string; onLogout: () => void }) {
           أنت دون إنترنت — {savedAt ? `تعرض آخر نسخة محفوظة على الجهاز من ${new Date(savedAt).toLocaleString("ar", { dateStyle: "short", timeStyle: "short" })}` : "لم تُحفظ نسخة على الجهاز بعد — افتح التطبيق مرة واحدة والإنترنت شغّال"}، وتتحدث تلقائياُ عند عودة الاتصال
         </div>
       )}
-      <header className="relative overflow-hidden bg-ink px-2 py-2.5 text-ink-foreground md:px-4 lg:py-1">
+      <header className="relative overflow-hidden bg-ink px-1.5 py-2.5 text-ink-foreground md:px-4 lg:py-1">
         <div className="pointer-events-none absolute inset-x-0 bottom-0 h-px edge-rule" />
-        <div className="relative mx-auto flex max-w-7xl flex-nowrap items-center justify-between gap-2 overflow-x-auto [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+        <div className="relative mx-auto flex max-w-7xl flex-nowrap items-center justify-between gap-1.5 overflow-x-auto [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
           <button onClick={() => setMenu(true)} aria-label="فتح قائمة الأقسام" aria-expanded="false" aria-haspopup="dialog"
             className="flex shrink-0 items-center gap-2 rounded-lg border border-ink-foreground/15 bg-ink-foreground/5 px-2 py-1.5 transition-colors hover:border-accent/60 hover:bg-ink-foreground/10">
             <Menu className="h-5 w-5" />
             <span className="hidden text-xs font-bold sm:inline">{cur.l}</span>
           </button>
-          <div className="flex min-w-0 flex-1 items-center justify-center gap-2">
+          <div className="flex min-w-0 flex-1 items-center justify-center gap-1.5">
           <h1 className="flex shrink-0 items-center gap-2 text-xs font-bold md:text-lg">
-            <span className="flex h-7 w-7 items-center justify-center rounded-lg bg-accent text-accent-foreground"><MessageCircle className="h-4 w-4" /></span>
+            <span className="flex h-6 w-6 items-center justify-center rounded-lg bg-accent text-accent-foreground md:h-7 md:w-7"><MessageCircle className="h-4 w-4" /></span>
             محادثات العملاء
           </h1>
           <div className="flex shrink-0 items-center gap-1">
@@ -362,7 +362,7 @@ function Dashboard({ pw, onLogout }: { pw: string; onLogout: () => void }) {
               const Ic = s === "all" ? null : stageIcon[s];
               return (
               <button key={s} onClick={() => setFilter(s)}
-                className={`relative mt-2 lg:mt-1.5 flex flex-1 shrink-0 items-center justify-center gap-1.5 whitespace-nowrap rounded-lg px-3 py-1.5 text-xs md:text-sm ${s === "human" ? `bg-st-human-fg text-background ${filter === s ? "font-semibold ring-2 ring-st-human-fg ring-offset-1" : ""}` : filter === s ? "bg-primary font-semibold text-primary-foreground" : "bg-muted text-foreground"}`}>
+                className={`relative mt-2 lg:mt-1.5 flex flex-1 shrink-0 items-center justify-center gap-1.5 whitespace-nowrap rounded-lg px-3 py-1.5 text-xs md:text-sm ${s === "human" ? `bg-accent text-accent-foreground ${filter === s ? "font-semibold ring-2 ring-accent ring-offset-1" : ""}` : filter === s ? "bg-primary font-semibold text-primary-foreground" : "bg-muted text-foreground"}`}>
                 {Ic && <Ic className="h-4 w-4" />}{s === "all" ? "الكل" : STAGES[s]}
                 <span className="rounded-full bg-background/70 px-1.5 text-[11px] font-bold text-foreground">{s === "all" ? customers.length : customers.filter((c) => c.stage === s).length}</span>
                 {n > 0 && <span className="absolute -top-2 -left-1 min-w-[18px] animate-pulse rounded-full bg-accent px-1 text-[10px] font-bold leading-[18px] text-accent-foreground">{n}</span>}
