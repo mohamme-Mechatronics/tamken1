@@ -278,3 +278,18 @@ body {
   border: 1px solid var(--border);
   box-shadow: 0 1px 2px color-mix(in oklab, var(--ink) 6%, transparent), 0 12px 32px -16px color-mix(in oklab, var(--primary) 28%, transparent);
 }
+/* hidden side drawer: panel slides in from the right, backdrop fades in */
+@utility drawer-in {
+  animation: tamken-drawer 0.22s ease-out;
+}
+@utility overlay-in {
+  animation: tamken-fade 0.2s ease-out;
+}
+@keyframes tamken-drawer {
+  from { transform: translateX(100%); }
+  to { transform: translateX(0); }
+}
+@keyframes tamken-fade {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}

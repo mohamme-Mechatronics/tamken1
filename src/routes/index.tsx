@@ -6,7 +6,7 @@ import { useEffect, useMemo, useRef, useState, type ReactNode } from "react";
 import { WaText } from "@/components/WaText";
 import { useQuery, useQueryClient } from "@tanstack/react-query";
 import { useServerFn } from "@tanstack/react-start";
-import { ArrowRight, FileText, Search, Phone, MapPin, Sun, MessageCircle, Lock, Send, Bell, BellOff, Bot, User, Moon, Copy, Check, Clock, Download, Info, StickyNote, Headphones, LayoutGrid, Image as ImageIcon, Inbox, ShoppingCart, UserPlus, Wallet } from "lucide-react";
+import { ArrowRight, FileText, Search, Phone, MapPin, Sun, MessageCircle, Lock, Send, Bell, BellOff, Bot, User, Moon, Copy, Check, Clock, Download, Info, StickyNote, Headphones, LayoutGrid, Image as ImageIcon, Inbox, ShoppingCart, UserPlus, Wallet, Menu } from "lucide-react";
 
 let audioCtx: AudioContext | null = null;
 function playChime() {
@@ -209,6 +209,7 @@ function Dashboard({ pw, onLogout }: { pw: string; onLogout: () => void }) {
   const [filter, setFilter] = useState<Stage | "all">("all");
   const [openId, setOpenId] = useState<string | null>(null);
   const [view, setView] = useState<"chats" | "orders" | "reports" | "tickets" | "catalog" | "quote" | "flow">("chats");
+  const [menu, setMenu] = useState(false);
   const { data: rep } = useReports(pw);
   const pendingReports = (rep?.requests ?? []).filter((r) => r.status === "pending").length;
   const { data: tickets = [] } = useTickets(pw);
@@ -248,10 +249,17 @@ function Dashboard({ pw, onLogout }: { pw: string; onLogout: () => void }) {
   }, [customers, isLoading, muted]);
 
   useEffect(() => {
-    const onKey = (e: KeyboardEvent) => { if (e.key === "Escape") setOpenId(null); };
+    const onKey = (e: KeyboardEvent) => { if (e.key === "Escape") { setMenu(false); setOpenId(null); } };
     window.addEventListener("keydown", onKey);
     return () => window.removeEventListener("keydown", onKey);
   }, []);
+  // الشريط الجانبي المخفي: يمنع تمرير الصفحة خلفه وهو مفتوح
+  useEffect(() => {
+    if (!menu) return;
+    const prev = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    return () => { document.body.style.overflow = prev; };
+  }, [menu]);
 
   const stats: { key: Stage | "all"; label: string; value: number }[] = [
     { key: "all", label: "العملاء", value: customers.length },
@@ -281,6 +289,7 @@ function Dashboard({ pw, onLogout }: { pw: string; onLogout: () => void }) {
     { k: "quote" as const, l: "إنشاء عرض سعر", i: FilePlus2, n: 0 },
     { k: "flow" as const, l: "المسار", i: RouteIcon, n: 0 },
   ];
+  const cur = tabs.find((t) => t.k === view) ?? tabs[0] ?? { k: "chats" as const, l: "المحادثات", i: MessageCircle, n: 0 };
 
   return (
     <div dir="rtl" className="flex min-h-screen flex-col bg-background text-foreground lg:h-screen lg:overflow-hidden">
@@ -293,19 +302,17 @@ function Dashboard({ pw, onLogout }: { pw: string; onLogout: () => void }) {
       <header className="relative overflow-hidden bg-ink px-4 py-3 text-ink-foreground md:px-8 lg:py-1">
         <div className="pointer-events-none absolute inset-x-0 bottom-0 h-px bg-gradient-to-l from-transparent via-accent/60 to-transparent" />
         <div className="relative mx-auto flex max-w-7xl flex-wrap items-center justify-between gap-2 md:flex-nowrap">
-          <h1 className="flex shrink-0 items-center gap-2 text-sm font-bold md:text-lg">
-            <span className="flex h-7 w-7 items-center justify-center rounded-lg bg-primary text-primary-foreground"><MessageCircle className="h-4 w-4" /></span>
-            محادثات العملاء
-          </h1>
-          <nav className="order-last -mx-4 flex w-[calc(100%+2rem)] snap-x items-center gap-2 overflow-x-auto px-4 pb-1 pt-2 [scrollbar-width:none] md:order-none md:mx-0 md:w-auto md:flex-1 md:justify-center md:px-0 [&::-webkit-scrollbar]:hidden">
-            {tabs.map((t) => (
-              <button key={t.k} onClick={() => { setView(t.k); if (t.k !== "chats") setOpenId(null); }}
-                className={`relative flex shrink-0 snap-start items-center gap-2 whitespace-nowrap rounded-full border px-4 py-2 text-xs font-bold transition-all duration-200 md:text-sm ${view === t.k ? "border-accent bg-accent text-accent-foreground shadow-lg shadow-accent/30" : "border-ink-foreground/15 bg-ink-foreground/5 text-ink-foreground/85 hover:border-accent/50 hover:bg-ink-foreground/10"}`}>
-                <t.i className="h-4 w-4" />{t.l}
-                {t.n > 0 && <span className="absolute -top-1.5 left-0 min-w-5 rounded-full bg-destructive px-1.5 text-center text-[10px] font-bold text-destructive-foreground ring-2 ring-ink">{t.n}</span>}
-              </button>
-            ))}
-          </nav>
+          <div className="flex shrink-0 items-center gap-2">
+            <button onClick={() => setMenu(true)} aria-label="فتح قائمة الأقسام" aria-expanded="false" aria-haspopup="dialog"
+              className="flex items-center gap-2 rounded-lg border border-ink-foreground/15 bg-ink-foreground/5 px-2.5 py-2 transition-colors hover:border-accent/60 hover:bg-ink-foreground/10">
+              <Menu className="h-5 w-5" />
+              <span className="hidden text-xs font-bold sm:inline">{cur.l}</span>
+            </button>
+            <h1 className="flex items-center gap-2 text-sm font-bold md:text-lg">
+              <span className="flex h-7 w-7 items-center justify-center rounded-lg bg-primary text-primary-foreground"><MessageCircle className="h-4 w-4" /></span>
+              محادثات العملاء
+            </h1>
+          </div>
           <div className="flex shrink-0 items-center gap-1">
             <ConnectionSettings pw={pw} />
             <button onClick={toggleDark} aria-label={dark ? "الوضع الفاتح" : "الوضع الليلي"} className="rounded-md p-1.5 hover:bg-ink-foreground/10">
@@ -418,6 +425,32 @@ function Dashboard({ pw, onLogout }: { pw: string; onLogout: () => void }) {
         <span className="absolute left-6 top-1/2 hidden h-px w-32 -translate-y-1/2 bg-ink-foreground/30 md:block" />
         <span className="absolute left-[9.5rem] top-1/2 hidden -translate-y-1/2 text-primary md:block">⌁</span>
       </footer>
+
+      {menu && (
+        <div className="fixed inset-0 z-[60]" role="dialog" aria-modal="true" aria-label="أقسام اللوحة">
+          <button aria-label="إغلاق القائمة" onClick={() => setMenu(false)} className="overlay-in absolute inset-0 bg-ink/70 backdrop-blur-[2px]" />
+          <div className="drawer-in absolute inset-y-0 right-0 flex w-[min(19rem,84vw)] flex-col border-l border-accent/25 bg-ink text-ink-foreground shadow-2xl">
+            <div className="flex items-center justify-between gap-2 border-b border-ink-foreground/15 px-4 py-3">
+              <span className="flex items-center gap-2 text-sm font-bold"><LayoutGrid className="h-4 w-4 text-accent" /> أقسام اللوحة</span>
+              <button onClick={() => setMenu(false)} aria-label="إغلاق القائمة" className="rounded-md p-1.5 hover:bg-ink-foreground/10"><X className="h-4 w-4" /></button>
+            </div>
+            <nav className="flex-1 space-y-1.5 overflow-y-auto p-3">
+              {tabs.map((t) => (
+                <button key={t.k} onClick={() => { setView(t.k); if (t.k !== "chats") setOpenId(null); setMenu(false); }}
+                  aria-current={view === t.k ? "page" : undefined}
+                  className={`relative flex w-full items-center gap-3 rounded-xl px-3 py-3 text-sm font-bold transition-colors ${view === t.k ? "bg-accent text-accent-foreground shadow-lg shadow-accent/25" : "text-ink-foreground/85 hover:bg-ink-foreground/10"}`}>
+                  <t.i className="h-5 w-5 shrink-0" />
+                  <span className="flex-1 text-right">{t.l}</span>
+                  {t.n > 0 && <span className="min-w-6 rounded-full bg-destructive px-1.5 text-center text-[11px] font-bold text-destructive-foreground">{t.n}</span>}
+                </button>
+              ))}
+            </nav>
+            <div className="border-t border-ink-foreground/15 px-4 py-3">
+              <BrandMark className="text-[13px]" />
+            </div>
+          </div>
+        </div>
+      )}
 
       {open && !wide && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-foreground/50 md:py-3" onClick={() => setOpenId(null)}>
