@@ -9,9 +9,9 @@ import { design, PANEL } from "@/lib/sld-calc";
 
 const W = 1300, H = 460;
 const hex = (h: string) => rgb(parseInt(h.slice(1, 3), 16) / 255, parseInt(h.slice(3, 5), 16) / 255, parseInt(h.slice(5, 7), 16) / 255);
-const BG = hex("#0B2545"), BOXBG = hex("#0E2B50"), HEAD = hex("#1B3A66");
-const DC = hex("#F08A80"), AC = hex("#7FA8F5"), COM = hex("#C79BF2"), EARTH = hex("#7EE07E"), YEL = hex("#F5C518");
-const WHITE = hex("#FFFFFF"), MUTED = hex("#B9C6DA"), OKBG = hex("#123D3A"), OK = hex("#55E07A");
+const BG = hex("#1A1712"), BOXBG = hex("#221E17"), HEAD = hex("#2E2820");
+const DC = hex("#F08A80"), AC = hex("#E8B23A"), COM = hex("#D9C9A8"), EARTH = hex("#7EE07E"), YEL = hex("#F5C518");
+const WHITE = hex("#FFFFFF"), MUTED = hex("#C9C2B4"), OKBG = hex("#123D3A"), OK = hex("#55E07A");
 const b64 = (s: string) => Uint8Array.from(atob(s), (c) => c.charCodeAt(0));
 const f1 = (n: number, d = 2) => n.toFixed(d);
 
