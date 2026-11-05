@@ -44,3 +44,6 @@
 - [x] Edit bot workflow file so webhook 9522a34f… replies to the dashboard chat (Respond to Webhook) and links to the dashboard (v52 file + bot memory endpoint)
 - [ ] Import v52 into n8n and activate — needs the user (no n8n access)
 - [ ] Bot AI answers (/api/public/bot-agent) and quote/study PDF maker (/api/public/bot-pdf) missing in dashboard — awaiting user decision
+
+- [ ] Bot v53 from original v51 file: all links → tamken1, media hosted on the new site, new Tamken logo/images, Telegram token filled, ready to import
+- [ ] Add missing bot services: AI answers (bot-agent) and PDF maker (bot-pdf)
