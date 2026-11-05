@@ -40,6 +40,7 @@ import { Catalog } from "@/components/Catalog";
 import { QuoteBuilder } from "@/components/QuoteBuilder";
 import { FilePlus2, FileBarChart, Route as RouteIcon } from "lucide-react";
 import { BotFlow } from "@/components/BotFlow";
+import { WhatsAppMark, TelegramMark } from "@/components/ChannelMarks";
 import { Reports, useReports } from "@/components/Reports";
 import waBg from "@/assets/actes-wa-bg.png.asset.json";
 import { BrandMark } from "@/components/BrandMark";
