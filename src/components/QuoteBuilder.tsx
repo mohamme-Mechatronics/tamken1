@@ -551,7 +551,7 @@ export function QuoteBuilder({ pw, initialCustomerId }: { pw: string; initialCus
           <h2 className="flex items-center gap-2 text-lg font-bold"><FilePlus2 className="h-5 w-5 text-primary" />إنشاء عرض سعر</h2>
           <div className="mr-auto flex flex-wrap items-center gap-1">
             {(["res", "com"] as const).map((k) => (
-              <button key={k} type="button" onClick={() => { setPath(path === k ? null : k); setComM(null); setTiers(null); setInvs(null); setInvKw(null); setDaily(""); }} className={`rounded-lg px-3 py-1.5 text-xs font-bold ${path === k ? "bg-primary text-primary-foreground" : "bg-muted hover:bg-muted/70"}`}>{k === "res" ? "سكني" : "تجاري"}</button>
+              <button key={k} type="button" onClick={() => { setPath(path === k ? null : k); setComM(null); setTiers(null); setInvs(null); setInvKw(null); setDaily(""); }} className={`rounded-lg px-3 py-1.5 text-xs font-bold ${path === k ? "bg-accent text-accent-foreground" : "bg-muted hover:bg-muted/70"}`}>{k === "res" ? "سكني" : "تجاري"}</button>
             ))}
             {path === "com" && (["bill", "kwh", "diesel"] as const).map((m) => (
               <button key={m} type="button" onClick={() => { setComM(m); setDaily(""); }} className={`rounded-lg border px-2 py-1.5 text-xs font-semibold ${comM === m ? "border-accent bg-accent text-accent-foreground" : "bg-card"}`}>{m === "bill" ? "فاتورة" : m === "kwh" ? "استهلاك شهري" : "الديزل"}</button>
@@ -603,7 +603,7 @@ export function QuoteBuilder({ pw, initialCustomerId }: { pw: string; initialCus
           <div className="max-h-96 overflow-y-auto rounded-xl border bg-muted/30 p-2 animate-in fade-in slide-in-from-top-2">
             <div className="mb-2 grid grid-cols-2 gap-1">
               {(["res", "com"] as const).map((k) => (
-                <button key={k} onClick={() => setPresetTab(k)} className={`rounded-lg px-3 py-1.5 text-sm font-bold ${presetTab === k ? "bg-primary text-primary-foreground" : "bg-card border"}`}>{k === "res" ? "منظومات سكنية" : "منظومات تجارية"}</button>))}
+                <button key={k} onClick={() => setPresetTab(k)} className={`rounded-lg px-3 py-1.5 text-sm font-bold ${presetTab === k ? "bg-accent text-accent-foreground" : "bg-card border"}`}>{k === "res" ? "منظومات سكنية" : "منظومات تجارية"}</button>))}
             </div>
             {[...new Set(PRESETS.filter((p) => (p.type ?? "res") === presetTab).map((p) => p.group))].map((g) => (
               <div key={g} className="mb-2">
@@ -618,7 +618,7 @@ export function QuoteBuilder({ pw, initialCustomerId }: { pw: string; initialCus
         <div className="grid grid-cols-2 gap-1.5 sm:grid-cols-5">
           {TABLES.map((t) => { const n = countIn(t.k), all = t.k === "custom" ? 0 : byCat[t.k]?.length ?? 0; return (
             <button key={t.k} onClick={() => { setActive(t.k); setQ(""); }}
-              className={`group relative flex items-center gap-1.5 rounded-lg border px-2 py-1 text-right transition-all duration-200 hover:shadow-md ${active === t.k ? "border-primary bg-primary text-primary-foreground shadow" : "bg-card"}`}>
+              className={`group relative flex items-center gap-1.5 rounded-lg border px-2 py-1 text-right transition-all duration-200 hover:shadow-md ${active === t.k ? "border-accent bg-accent text-accent-foreground shadow" : "bg-card"}`}>
               <t.i className={`h-3.5 w-3.5 shrink-0 ${active === t.k ? "" : "text-primary"}`} />
               <span className="truncate text-[11px] font-bold leading-tight">{t.t}</span>
               <span className="mr-auto shrink-0 text-[9px] opacity-70">{t.k === "custom" ? "حر" : all}</span>
