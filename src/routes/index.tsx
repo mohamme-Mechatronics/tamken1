@@ -357,7 +357,7 @@ function Dashboard({ pw, onLogout }: { pw: string; onLogout: () => void }) {
               aria-label="بحث عن عميل" className="w-full rounded-lg border border-input bg-background py-2 pl-9 pr-9 text-sm outline-none focus:ring-2 focus:ring-ring" />
             {q && <button onClick={() => setQ("")} aria-label="مسح البحث" className="absolute left-2 top-1/2 -translate-y-1/2 rounded p-1 text-muted-foreground hover:bg-muted"><X className="h-4 w-4" /></button>}
           </div>
-          <div className="flex gap-2 overflow-x-auto pb-1">
+          <div className="flex gap-2 overflow-x-auto pb-1 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
             {(["all", "human", "quote", "cod", "buy"] as (Stage | "all")[]).map((s) => {
               const n = customers.filter((c) => c.unread > 0 && (s === "all" || c.stage === s)).length;
               const Ic = s === "all" ? null : stageIcon[s];
