@@ -39,3 +39,5 @@
 - [x] إعدادات الاتصال: رابط خادم البوت مركزي
 - [x] استضافة الواجهة على Vercel مع بقاء الخادم في Lovable
 - [x] سؤال إلغاء Backend: أُجيب (لا يُلغى، Vercel يعتمد عليه)
+
+- [x] Bot chat tab: send user message to n8n production webhook as {"message"}, wait for reply, show it; publish

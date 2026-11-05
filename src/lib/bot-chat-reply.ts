@@ -10,7 +10,9 @@ export function extractBotReply(value: unknown, depth = 0): string | null {
     const t = value.trim();
     if (!t) return null;
     if ((t.startsWith("{") || t.startsWith("[")) && depth === 0) {
-      try { return extractBotReply(JSON.parse(t), depth + 1) ?? t; } catch { return t; }
+      let parsed: unknown;
+      try { parsed = JSON.parse(t); } catch { return t; }
+      return extractBotReply(parsed, depth + 1);
     }
     return t;
   }
