@@ -309,17 +309,17 @@ function Dashboard({ pw, onLogout }: { pw: string; onLogout: () => void }) {
           أنت دون إنترنت — {savedAt ? `تعرض آخر نسخة محفوظة على الجهاز من ${new Date(savedAt).toLocaleString("ar", { dateStyle: "short", timeStyle: "short" })}` : "لم تُحفظ نسخة على الجهاز بعد — افتح التطبيق مرة واحدة والإنترنت شغّال"}، وتتحدث تلقائياُ عند عودة الاتصال
         </div>
       )}
-      <header className="relative overflow-hidden bg-ink px-2 py-2.5 text-ink-foreground md:px-4 lg:py-1">
+      <header className="relative overflow-hidden bg-ink px-1.5 py-2.5 text-ink-foreground md:px-4 lg:py-1">
         <div className="pointer-events-none absolute inset-x-0 bottom-0 h-px edge-rule" />
-        <div className="relative mx-auto flex max-w-7xl flex-nowrap items-center justify-between gap-2 overflow-x-auto [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+        <div className="relative mx-auto flex max-w-7xl flex-nowrap items-center justify-between gap-1.5 overflow-x-auto [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
           <button onClick={() => setMenu(true)} aria-label="فتح قائمة الأقسام" aria-expanded="false" aria-haspopup="dialog"
             className="flex shrink-0 items-center gap-2 rounded-lg border border-ink-foreground/15 bg-ink-foreground/5 px-2 py-1.5 transition-colors hover:border-accent/60 hover:bg-ink-foreground/10">
             <Menu className="h-5 w-5" />
             <span className="hidden text-xs font-bold sm:inline">{cur.l}</span>
           </button>
-          <div className="flex min-w-0 flex-1 items-center justify-center gap-2">
+          <div className="flex min-w-0 flex-1 items-center justify-center gap-1.5">
           <h1 className="flex shrink-0 items-center gap-2 text-xs font-bold md:text-lg">
-            <span className="flex h-7 w-7 items-center justify-center rounded-lg bg-accent text-accent-foreground"><MessageCircle className="h-4 w-4" /></span>
+            <span className="flex h-6 w-6 items-center justify-center rounded-lg bg-accent text-accent-foreground md:h-7 md:w-7"><MessageCircle className="h-4 w-4" /></span>
             محادثات العملاء
           </h1>
           <div className="flex shrink-0 items-center gap-1">
