@@ -17,7 +17,7 @@ export function BrandMark({ className = "", compact = false }: { className?: str
         <span className="text-accent">T</span>
         <span>AMKEN</span>
       </span>
-      <span className={`mt-[0.22em] flex items-center gap-[0.4em] font-bold whitespace-nowrap ${compact ? "text-[0.46em]" : "text-[0.40em]"}`}>
+      <span className={`mt-[0.22em] flex items-center gap-[0.4em] font-bold whitespace-nowrap ${compact ? "text-[0.5em]" : "text-[0.52em]"}`}>
         <span className="text-accent">تمكين</span>
         <span>لحلول الطاقة</span>
       </span>
