@@ -12,16 +12,16 @@ export function BrandMark({ className = "", compact = false, onDark = false }: {
     <span
       className={`inline-flex select-none flex-col items-center leading-none ${className}`}
       dir="rtl"
-      aria-label="تمكين لأنظمة الطاقة وحلولها"
+      aria-label="تمكين لحلول الطاقة"
     >
       <span className="relative inline-block font-brand text-[1em] tracking-[0.01em]" dir="ltr">
         <span className={`absolute -top-[0.36em] left-[0.10em] h-[0.28em] w-[0.10em] rotate-[22deg] rounded-[0.04em] ${tick}`} />
         <span className={hi}>T</span>
         <span>AMKEN</span>
       </span>
-      <span className={`mt-[0.22em] flex items-center gap-[0.4em] font-bold whitespace-nowrap ${compact ? "text-[0.5em]" : "text-[0.40em]"}`}>
+      <span className={`mt-[0.22em] flex items-center gap-[0.4em] font-bold whitespace-nowrap ${compact ? "text-[0.46em]" : "text-[0.40em]"}`}>
         <span className={hi}>تمكين</span>
-        {!compact && <span>لأنظمة الطاقة وحلولها</span>}
+        <span>لحلول الطاقة</span>
       </span>
     </span>
   );
