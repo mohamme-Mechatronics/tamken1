@@ -291,7 +291,6 @@ function Dashboard({ pw, onLogout }: { pw: string; onLogout: () => void }) {
         </div>
       )}
       <header className="relative overflow-hidden bg-ink px-4 py-3 text-ink-foreground md:px-8 lg:py-1">
-        <div className="pointer-events-none absolute -top-24 left-1/2 h-48 w-[60%] -translate-x-1/2 rounded-full bg-accent/20 blur-3xl" />
         <div className="pointer-events-none absolute inset-x-0 bottom-0 h-px bg-gradient-to-l from-transparent via-accent/60 to-transparent" />
         <div className="relative mx-auto flex max-w-7xl flex-wrap items-center justify-between gap-2 md:flex-nowrap">
           <h1 className="flex shrink-0 items-center gap-2 text-sm font-bold md:text-lg">
@@ -414,7 +413,6 @@ function Dashboard({ pw, onLogout }: { pw: string; onLogout: () => void }) {
         </>}
       </div>
       <footer className="relative overflow-hidden bg-ink py-2.5 lg:hidden text-center text-xs font-semibold text-ink-foreground">
-        <div className="pointer-events-none absolute -bottom-24 left-1/2 h-48 w-[60%] -translate-x-1/2 rounded-full bg-accent/20 blur-3xl" />
         <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-l from-transparent via-accent/60 to-transparent" />
         تمكين — لأنظمة الطاقة وحلولها
         <span className="absolute left-6 top-1/2 hidden h-px w-32 -translate-y-1/2 bg-ink-foreground/30 md:block" />
