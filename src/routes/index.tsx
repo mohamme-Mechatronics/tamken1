@@ -40,6 +40,7 @@ import { Catalog } from "@/components/Catalog";
 import { QuoteBuilder } from "@/components/QuoteBuilder";
 import { FilePlus2, FileBarChart, Route as RouteIcon } from "lucide-react";
 import { BotFlow } from "@/components/BotFlow";
+import { WhatsAppMark, TelegramMark } from "@/components/ChannelMarks";
 import { Reports, useReports } from "@/components/Reports";
 import waBg from "@/assets/actes-wa-bg.png.asset.json";
 import { BrandMark } from "@/components/BrandMark";
@@ -60,10 +61,10 @@ export const Route = createFileRoute("/")({
 
 const PW_KEY = "actes_pw";
 
-// علامة القناة الصغيرة فوق كل محادثة
+// علامة القناة الصغيرة فوق كل محادثة (شعار، بدون نص)
 const CHAN = {
-  whatsapp: { label: "واتساب", Icon: MessageCircle, cls: "bg-muted text-muted-foreground ring-border" },
-  telegram: { label: "تلجرام", Icon: Send, cls: "bg-accent/25 text-accent-foreground ring-accent/45" },
+  whatsapp: { label: "واتساب", Mark: WhatsAppMark, cls: "bg-muted ring-border" },
+  telegram: { label: "تلجرام", Mark: TelegramMark, cls: "bg-muted ring-border" },
 };
 
 const stageClass: Record<string, string> = {
@@ -375,8 +376,8 @@ function Dashboard({ pw, onLogout }: { pw: string; onLogout: () => void }) {
               return (
               <li key={c.id} onClick={() => setOpenId(c.id)} className={`border-b border-r-4 border-b-border transition last:border-b-0 hover:bg-muted/60 ${openId === c.id ? "border-r-primary bg-primary/10" : "border-r-transparent"}`}>
                 <div className="flex items-center px-3 pt-1.5">
-                  <span className={`ms-auto inline-flex items-center gap-1 rounded-full px-1.5 py-[1px] text-[9px] font-semibold leading-[14px] ring-1 ${ch.cls}`}>
-                    <ch.Icon className="h-2.5 w-2.5" />{ch.label}
+                  <span className={`ms-auto inline-flex items-center rounded-full p-[3px] ring-1 ${ch.cls}`} title={ch.label} aria-label={ch.label}>
+                    <ch.Mark className="h-3.5 w-3.5" />
                   </span>
                 </div>
                 <div className="flex cursor-pointer items-center gap-3 px-3 pb-2.5 pt-1">
