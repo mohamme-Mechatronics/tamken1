@@ -20,6 +20,7 @@ import { Route as ApiPublicBotOrderRouteImport } from './routes/api/public/bot-o
 import { Route as ApiPublicBotOrderStatusRouteImport } from './routes/api/public/bot-order-status'
 import { Route as ApiPublicBotPausedRouteImport } from './routes/api/public/bot-paused'
 import { Route as ApiPublicBotReportRequestRouteImport } from './routes/api/public/bot-report-request'
+import { Route as ApiPublicBotSessionRouteImport } from './routes/api/public/bot-session'
 import { Route as ApiPublicBotTicketRouteImport } from './routes/api/public/bot-ticket'
 import { Route as ApiPublicCrmMediaRouteImport } from './routes/api/public/crm-media'
 import { Route as ApiPublicJobsGithubBackupRouteImport } from './routes/api/public/jobs/github-backup'
@@ -80,6 +81,11 @@ const ApiPublicBotReportRequestRoute =
     path: '/api/public/bot-report-request',
     getParentRoute: () => rootRouteImport,
   } as any)
+const ApiPublicBotSessionRoute = ApiPublicBotSessionRouteImport.update({
+  id: '/api/public/bot-session',
+  path: '/api/public/bot-session',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ApiPublicBotTicketRoute = ApiPublicBotTicketRouteImport.update({
   id: '/api/public/bot-ticket',
   path: '/api/public/bot-ticket',
@@ -109,6 +115,7 @@ export interface FileRoutesByFullPath {
   '/api/public/bot-order-status': typeof ApiPublicBotOrderStatusRoute
   '/api/public/bot-paused': typeof ApiPublicBotPausedRoute
   '/api/public/bot-report-request': typeof ApiPublicBotReportRequestRoute
+  '/api/public/bot-session': typeof ApiPublicBotSessionRoute
   '/api/public/bot-ticket': typeof ApiPublicBotTicketRoute
   '/api/public/crm-media': typeof ApiPublicCrmMediaRoute
   '/api/public/jobs/github-backup': typeof ApiPublicJobsGithubBackupRoute
@@ -125,6 +132,7 @@ export interface FileRoutesByTo {
   '/api/public/bot-order-status': typeof ApiPublicBotOrderStatusRoute
   '/api/public/bot-paused': typeof ApiPublicBotPausedRoute
   '/api/public/bot-report-request': typeof ApiPublicBotReportRequestRoute
+  '/api/public/bot-session': typeof ApiPublicBotSessionRoute
   '/api/public/bot-ticket': typeof ApiPublicBotTicketRoute
   '/api/public/crm-media': typeof ApiPublicCrmMediaRoute
   '/api/public/jobs/github-backup': typeof ApiPublicJobsGithubBackupRoute
@@ -142,6 +150,7 @@ export interface FileRoutesById {
   '/api/public/bot-order-status': typeof ApiPublicBotOrderStatusRoute
   '/api/public/bot-paused': typeof ApiPublicBotPausedRoute
   '/api/public/bot-report-request': typeof ApiPublicBotReportRequestRoute
+  '/api/public/bot-session': typeof ApiPublicBotSessionRoute
   '/api/public/bot-ticket': typeof ApiPublicBotTicketRoute
   '/api/public/crm-media': typeof ApiPublicCrmMediaRoute
   '/api/public/jobs/github-backup': typeof ApiPublicJobsGithubBackupRoute
@@ -160,6 +169,7 @@ export interface FileRouteTypes {
     | '/api/public/bot-order-status'
     | '/api/public/bot-paused'
     | '/api/public/bot-report-request'
+    | '/api/public/bot-session'
     | '/api/public/bot-ticket'
     | '/api/public/crm-media'
     | '/api/public/jobs/github-backup'
@@ -176,6 +186,7 @@ export interface FileRouteTypes {
     | '/api/public/bot-order-status'
     | '/api/public/bot-paused'
     | '/api/public/bot-report-request'
+    | '/api/public/bot-session'
     | '/api/public/bot-ticket'
     | '/api/public/crm-media'
     | '/api/public/jobs/github-backup'
@@ -192,6 +203,7 @@ export interface FileRouteTypes {
     | '/api/public/bot-order-status'
     | '/api/public/bot-paused'
     | '/api/public/bot-report-request'
+    | '/api/public/bot-session'
     | '/api/public/bot-ticket'
     | '/api/public/crm-media'
     | '/api/public/jobs/github-backup'
@@ -209,6 +221,7 @@ export interface RootRouteChildren {
   ApiPublicBotOrderStatusRoute: typeof ApiPublicBotOrderStatusRoute
   ApiPublicBotPausedRoute: typeof ApiPublicBotPausedRoute
   ApiPublicBotReportRequestRoute: typeof ApiPublicBotReportRequestRoute
+  ApiPublicBotSessionRoute: typeof ApiPublicBotSessionRoute
   ApiPublicBotTicketRoute: typeof ApiPublicBotTicketRoute
   ApiPublicCrmMediaRoute: typeof ApiPublicCrmMediaRoute
   ApiPublicJobsGithubBackupRoute: typeof ApiPublicJobsGithubBackupRoute
@@ -293,6 +306,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ApiPublicBotReportRequestRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/api/public/bot-session': {
+      id: '/api/public/bot-session'
+      path: '/api/public/bot-session'
+      fullPath: '/api/public/bot-session'
+      preLoaderRoute: typeof ApiPublicBotSessionRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/api/public/bot-ticket': {
       id: '/api/public/bot-ticket'
       path: '/api/public/bot-ticket'
@@ -329,6 +349,7 @@ const rootRouteChildren: RootRouteChildren = {
   ApiPublicBotOrderStatusRoute: ApiPublicBotOrderStatusRoute,
   ApiPublicBotPausedRoute: ApiPublicBotPausedRoute,
   ApiPublicBotReportRequestRoute: ApiPublicBotReportRequestRoute,
+  ApiPublicBotSessionRoute: ApiPublicBotSessionRoute,
   ApiPublicBotTicketRoute: ApiPublicBotTicketRoute,
   ApiPublicCrmMediaRoute: ApiPublicCrmMediaRoute,
   ApiPublicJobsGithubBackupRoute: ApiPublicJobsGithubBackupRoute,
