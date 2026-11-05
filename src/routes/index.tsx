@@ -313,7 +313,7 @@ function Dashboard({ pw, onLogout }: { pw: string; onLogout: () => void }) {
           </button>
           <div className="flex min-w-0 flex-1 items-center justify-center gap-2">
           <h1 className="flex shrink-0 items-center gap-2 text-xs font-bold md:text-lg">
-            <span className="flex h-7 w-7 items-center justify-center rounded-lg bg-primary text-primary-foreground"><MessageCircle className="h-4 w-4" /></span>
+            <span className="flex h-7 w-7 items-center justify-center rounded-lg bg-accent text-accent-foreground"><MessageCircle className="h-4 w-4" /></span>
             محادثات العملاء
           </h1>
           <div className="flex shrink-0 items-center gap-1">
@@ -425,7 +425,7 @@ function Dashboard({ pw, onLogout }: { pw: string; onLogout: () => void }) {
       </div>
       <footer className="relative overflow-hidden bg-ink py-2.5 lg:hidden text-center text-xs font-semibold text-ink-foreground">
         <div className="pointer-events-none absolute inset-x-0 top-0 h-px edge-rule" />
-        تمكين — لحلول الطاقة
+        <span className="text-accent">تمكين</span> — لحلول الطاقة
         <span className="absolute left-6 top-1/2 hidden h-px w-32 -translate-y-1/2 bg-ink-foreground/30 md:block" />
         <span className="absolute left-[9.5rem] top-1/2 hidden -translate-y-1/2 text-accent md:block">⌁</span>
       </footer>
