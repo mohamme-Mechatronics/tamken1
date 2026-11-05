@@ -289,7 +289,7 @@ function Dashboard({ pw, onLogout }: { pw: string; onLogout: () => void }) {
     { k: "quote" as const, l: "إنشاء عرض سعر", i: FilePlus2, n: 0 },
     { k: "flow" as const, l: "المسار", i: RouteIcon, n: 0 },
   ];
-  const cur = tabs.find((t) => t.k === view) ?? tabs[0];
+  const cur = tabs.find((t) => t.k === view) ?? tabs[0] ?? { k: "chats" as const, l: "المحادثات", i: MessageCircle, n: 0 };
 
   return (
     <div dir="rtl" className="flex min-h-screen flex-col bg-background text-foreground lg:h-screen lg:overflow-hidden">
