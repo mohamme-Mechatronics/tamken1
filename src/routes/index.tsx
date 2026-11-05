@@ -6,7 +6,7 @@ import { useEffect, useMemo, useRef, useState, type ReactNode } from "react";
 import { WaText } from "@/components/WaText";
 import { useQuery, useQueryClient } from "@tanstack/react-query";
 import { useServerFn } from "@tanstack/react-start";
-import { ArrowRight, FileText, Search, Phone, MapPin, Sun, MessageCircle, Lock, Send, Bell, BellOff, Bot, User, Moon, Copy, Check, Clock, Download, Info, StickyNote, Headphones, LayoutGrid, Image as ImageIcon, Inbox, ShoppingCart, UserPlus, Wallet } from "lucide-react";
+import { ArrowRight, FileText, Search, Phone, MapPin, Sun, MessageCircle, Lock, Send, Bell, BellOff, Bot, User, Moon, Copy, Check, Clock, Download, Info, StickyNote, Headphones, LayoutGrid, Image as ImageIcon, Inbox, ShoppingCart, UserPlus, Wallet, Menu } from "lucide-react";
 
 let audioCtx: AudioContext | null = null;
 function playChime() {
@@ -209,6 +209,7 @@ function Dashboard({ pw, onLogout }: { pw: string; onLogout: () => void }) {
   const [filter, setFilter] = useState<Stage | "all">("all");
   const [openId, setOpenId] = useState<string | null>(null);
   const [view, setView] = useState<"chats" | "orders" | "reports" | "tickets" | "catalog" | "quote" | "flow">("chats");
+  const [menu, setMenu] = useState(false);
   const { data: rep } = useReports(pw);
   const pendingReports = (rep?.requests ?? []).filter((r) => r.status === "pending").length;
   const { data: tickets = [] } = useTickets(pw);
@@ -248,10 +249,17 @@ function Dashboard({ pw, onLogout }: { pw: string; onLogout: () => void }) {
   }, [customers, isLoading, muted]);
 
   useEffect(() => {
-    const onKey = (e: KeyboardEvent) => { if (e.key === "Escape") setOpenId(null); };
+    const onKey = (e: KeyboardEvent) => { if (e.key === "Escape") { setMenu(false); setOpenId(null); } };
     window.addEventListener("keydown", onKey);
     return () => window.removeEventListener("keydown", onKey);
   }, []);
+  // الشريط الجانبي المخفي: يمنع تمرير الصفحة خلفه وهو مفتوح
+  useEffect(() => {
+    if (!menu) return;
+    const prev = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    return () => { document.body.style.overflow = prev; };
+  }, [menu]);
 
   const stats: { key: Stage | "all"; label: string; value: number }[] = [
     { key: "all", label: "العملاء", value: customers.length },
