@@ -43,6 +43,13 @@
       "when": 1793839006024,
       "tag": "0005_bot_sessions",
       "breakpoints": true
+    },
+    {
+      "idx": 6,
+      "version": "7",
+      "when": 1793913138708,
+      "tag": "0006_add_customer_channel",
+      "breakpoints": true
     }
   ]
 }
