@@ -301,28 +301,26 @@ function Dashboard({ pw, onLogout }: { pw: string; onLogout: () => void }) {
       )}
       <header className="relative overflow-hidden bg-ink px-4 py-3 text-ink-foreground md:px-8 lg:py-1">
         <div className="pointer-events-none absolute inset-x-0 bottom-0 h-px bg-gradient-to-l from-transparent via-accent/60 to-transparent" />
-        <div className="relative mx-auto flex max-w-7xl flex-wrap items-center justify-between gap-2 md:flex-nowrap">
-          <div className="flex shrink-0 items-center gap-2">
-            <button onClick={() => setMenu(true)} aria-label="فتح قائمة الأقسام" aria-expanded="false" aria-haspopup="dialog"
-              className="flex items-center gap-2 rounded-lg border border-ink-foreground/15 bg-ink-foreground/5 px-2.5 py-2 transition-colors hover:border-accent/60 hover:bg-ink-foreground/10">
-              <Menu className="h-5 w-5" />
-              <span className="hidden text-xs font-bold sm:inline">{cur.l}</span>
-            </button>
-            <h1 className="flex items-center gap-2 text-sm font-bold md:text-lg">
-              <span className="flex h-7 w-7 items-center justify-center rounded-lg bg-primary text-primary-foreground"><MessageCircle className="h-4 w-4" /></span>
-              محادثات العملاء
-            </h1>
-          </div>
+        <div className="relative mx-auto flex max-w-7xl flex-nowrap items-center gap-1.5 overflow-x-auto px-1 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+          <button onClick={() => setMenu(true)} aria-label="فتح قائمة الأقسام" aria-expanded="false" aria-haspopup="dialog"
+            className="flex shrink-0 items-center gap-2 rounded-lg border border-ink-foreground/15 bg-ink-foreground/5 px-2 py-1.5 transition-colors hover:border-accent/60 hover:bg-ink-foreground/10">
+            <Menu className="h-5 w-5" />
+            <span className="hidden text-xs font-bold sm:inline">{cur.l}</span>
+          </button>
+          <h1 className="flex shrink-0 items-center gap-2 text-xs font-bold md:text-lg">
+            <span className="flex h-7 w-7 items-center justify-center rounded-lg bg-primary text-primary-foreground"><MessageCircle className="h-4 w-4" /></span>
+            محادثات العملاء
+          </h1>
+          <BrandMark compact onDark className="shrink-0 text-[13px] md:text-[16px] lg:text-[14px]" />
           <div className="flex shrink-0 items-center gap-1">
             <ConnectionSettings pw={pw} />
-            <button onClick={toggleDark} aria-label={dark ? "الوضع الفاتح" : "الوضع الليلي"} className="rounded-md p-1.5 hover:bg-ink-foreground/10">
+            <button onClick={toggleDark} aria-label={dark ? "الوضع الفاتح" : "الوضع الليلي"} className="rounded-md p-1 hover:bg-ink-foreground/10">
               {dark ? <Moon className="h-4 w-4" /> : <Sun className="h-4 w-4" />}
             </button>
             <button onClick={() => { const m = !muted; setMuted(m); localStorage.setItem("actes_mute", m ? "1" : "0"); if (!m) playChime(); }}
-              aria-label={muted ? "تشغيل صوت التنبيه" : "كتم صوت التنبيه"} className="rounded-md p-1.5 hover:bg-ink-foreground/10">
+              aria-label={muted ? "تشغيل صوت التنبيه" : "كتم صوت التنبيه"} className="rounded-md p-1 hover:bg-ink-foreground/10">
               {muted ? <BellOff className="h-4 w-4" /> : <Bell className="h-4 w-4" />}
             </button>
-            <BrandMark className="shrink-0 text-[15px] md:text-[16px] lg:text-[14px]" />
           </div>
         </div>
       </header>
@@ -409,7 +407,7 @@ function Dashboard({ pw, onLogout }: { pw: string; onLogout: () => void }) {
               <div className="relative flex aspect-[9/19] h-full flex-col items-center justify-center gap-3 overflow-hidden rounded-[2.6rem] border-[10px] border-phone bg-phone text-wa-muted shadow-2xl">
                 <div className="absolute left-1/2 top-1.5 h-5 w-24 -translate-x-1/2 rounded-full bg-background/10" />
                 <div className="pointer-events-none absolute inset-0 bg-gradient-to-br from-wa-text/10 via-transparent to-transparent" />
-                <BrandMark className="text-[20px] text-wa-text opacity-90" />
+                <BrandMark onDark className="text-[20px] text-wa-text opacity-90" />
                 <MessageCircle className="h-8 w-8 opacity-40" />
                 <span className="px-6 text-center text-xs opacity-60">اختر محادثة من القائمة لعرضها هنا</span>
               </div>
@@ -446,7 +444,7 @@ function Dashboard({ pw, onLogout }: { pw: string; onLogout: () => void }) {
               ))}
             </nav>
             <div className="border-t border-ink-foreground/15 px-4 py-3">
-              <BrandMark className="text-[13px]" />
+              <BrandMark onDark className="text-[13px]" />
             </div>
           </div>
         </div>
