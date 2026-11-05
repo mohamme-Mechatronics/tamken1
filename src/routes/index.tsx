@@ -299,14 +299,15 @@ function Dashboard({ pw, onLogout }: { pw: string; onLogout: () => void }) {
           أنت دون إنترنت — {savedAt ? `تعرض آخر نسخة محفوظة على الجهاز من ${new Date(savedAt).toLocaleString("ar", { dateStyle: "short", timeStyle: "short" })}` : "لم تُحفظ نسخة على الجهاز بعد — افتح التطبيق مرة واحدة والإنترنت شغّال"}، وتتحدث تلقائياُ عند عودة الاتصال
         </div>
       )}
-      <header className="relative overflow-hidden bg-ink px-4 py-3 text-ink-foreground md:px-8 lg:py-1">
+      <header className="relative overflow-hidden bg-ink px-2 py-2.5 text-ink-foreground md:px-4 lg:py-1">
         <div className="pointer-events-none absolute inset-x-0 bottom-0 h-px bg-gradient-to-l from-transparent via-accent/60 to-transparent" />
-        <div className="relative mx-auto flex max-w-7xl flex-nowrap items-center gap-1.5 overflow-x-auto px-1 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+        <div className="relative mx-auto flex max-w-7xl flex-nowrap items-center justify-between gap-2 overflow-x-auto [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
           <button onClick={() => setMenu(true)} aria-label="فتح قائمة الأقسام" aria-expanded="false" aria-haspopup="dialog"
             className="flex shrink-0 items-center gap-2 rounded-lg border border-ink-foreground/15 bg-ink-foreground/5 px-2 py-1.5 transition-colors hover:border-accent/60 hover:bg-ink-foreground/10">
             <Menu className="h-5 w-5" />
             <span className="hidden text-xs font-bold sm:inline">{cur.l}</span>
           </button>
+          <div className="flex min-w-0 flex-1 items-center justify-center gap-2">
           <h1 className="flex shrink-0 items-center gap-2 text-xs font-bold md:text-lg">
             <span className="flex h-7 w-7 items-center justify-center rounded-lg bg-primary text-primary-foreground"><MessageCircle className="h-4 w-4" /></span>
             محادثات العملاء
@@ -321,7 +322,8 @@ function Dashboard({ pw, onLogout }: { pw: string; onLogout: () => void }) {
               {muted ? <BellOff className="h-4 w-4" /> : <Bell className="h-4 w-4" />}
             </button>
           </div>
-          <BrandMark compact className="ms-auto shrink-0 text-[13px] md:text-[16px] lg:text-[14px]" />
+          </div>
+          <BrandMark compact className="shrink-0 text-[13px] md:text-[16px] lg:text-[14px]" />
         </div>
       </header>
 
@@ -427,16 +429,16 @@ function Dashboard({ pw, onLogout }: { pw: string; onLogout: () => void }) {
       {menu && (
         <div className="fixed inset-0 z-[60]" role="dialog" aria-modal="true" aria-label="أقسام اللوحة">
           <button aria-label="إغلاق القائمة" onClick={() => setMenu(false)} className="overlay-in absolute inset-0 bg-ink/70 backdrop-blur-[2px]" />
-          <div className="drawer-in absolute inset-y-0 right-0 flex w-[min(19rem,84vw)] flex-col border-l border-accent/25 bg-ink text-ink-foreground shadow-2xl">
+          <div className="drawer-in absolute inset-y-0 right-0 flex w-[min(14.5rem,68vw)] flex-col border-l border-accent/25 bg-ink text-ink-foreground shadow-2xl">
             <div className="flex items-center justify-between gap-2 border-b border-ink-foreground/15 px-4 py-3">
               <span className="flex items-center gap-2 text-sm font-bold"><LayoutGrid className="h-4 w-4 text-accent" /> أقسام اللوحة</span>
               <button onClick={() => setMenu(false)} aria-label="إغلاق القائمة" className="rounded-md p-1.5 hover:bg-ink-foreground/10"><X className="h-4 w-4" /></button>
             </div>
-            <nav className="flex-1 space-y-1.5 overflow-y-auto p-3">
+            <nav className="flex-1 space-y-1 overflow-y-auto p-2">
               {tabs.map((t) => (
                 <button key={t.k} onClick={() => { setView(t.k); if (t.k !== "chats") setOpenId(null); setMenu(false); }}
                   aria-current={view === t.k ? "page" : undefined}
-                  className={`relative flex w-full items-center gap-3 rounded-xl px-3 py-3 text-sm font-bold transition-colors ${view === t.k ? "bg-accent text-accent-foreground shadow-lg shadow-accent/25" : "text-ink-foreground/85 hover:bg-ink-foreground/10"}`}>
+                  className={`relative flex w-full items-center gap-2.5 rounded-lg px-2.5 py-2 text-[13px] font-bold transition-colors ${view === t.k ? "bg-accent text-accent-foreground shadow-lg shadow-accent/25" : "text-ink-foreground/85 hover:bg-ink-foreground/10"}`}>
                   <t.i className="h-5 w-5 shrink-0" />
                   <span className="flex-1 text-right">{t.l}</span>
                   {t.n > 0 && <span className="min-w-6 rounded-full bg-destructive px-1.5 text-center text-[11px] font-bold text-destructive-foreground">{t.n}</span>}
