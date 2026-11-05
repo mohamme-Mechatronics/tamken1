@@ -311,7 +311,7 @@ function Dashboard({ pw, onLogout }: { pw: string; onLogout: () => void }) {
             <span className="flex h-7 w-7 items-center justify-center rounded-lg bg-primary text-primary-foreground"><MessageCircle className="h-4 w-4" /></span>
             محادثات العملاء
           </h1>
-          <BrandMark compact className="shrink-0 text-[13px] md:text-[16px] lg:text-[14px]" />
+          <BrandMark compact onDark className="shrink-0 text-[13px] md:text-[16px] lg:text-[14px]" />
           <div className="flex shrink-0 items-center gap-1">
             <ConnectionSettings pw={pw} />
             <button onClick={toggleDark} aria-label={dark ? "الوضع الفاتح" : "الوضع الليلي"} className="rounded-md p-1 hover:bg-ink-foreground/10">
@@ -407,7 +407,7 @@ function Dashboard({ pw, onLogout }: { pw: string; onLogout: () => void }) {
               <div className="relative flex aspect-[9/19] h-full flex-col items-center justify-center gap-3 overflow-hidden rounded-[2.6rem] border-[10px] border-phone bg-phone text-wa-muted shadow-2xl">
                 <div className="absolute left-1/2 top-1.5 h-5 w-24 -translate-x-1/2 rounded-full bg-background/10" />
                 <div className="pointer-events-none absolute inset-0 bg-gradient-to-br from-wa-text/10 via-transparent to-transparent" />
-                <BrandMark className="text-[20px] text-wa-text opacity-90" />
+                <BrandMark onDark className="text-[20px] text-wa-text opacity-90" />
                 <MessageCircle className="h-8 w-8 opacity-40" />
                 <span className="px-6 text-center text-xs opacity-60">اختر محادثة من القائمة لعرضها هنا</span>
               </div>
@@ -444,7 +444,7 @@ function Dashboard({ pw, onLogout }: { pw: string; onLogout: () => void }) {
               ))}
             </nav>
             <div className="border-t border-ink-foreground/15 px-4 py-3">
-              <BrandMark className="text-[13px]" />
+              <BrandMark onDark className="text-[13px]" />
             </div>
           </div>
         </div>
