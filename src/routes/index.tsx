@@ -291,19 +291,19 @@ function Dashboard({ pw, onLogout }: { pw: string; onLogout: () => void }) {
         </div>
       )}
       <header className="relative overflow-hidden bg-ink px-4 py-3 text-ink-foreground md:px-8 lg:py-1">
-        <div className="pointer-events-none absolute -top-10 left-[30%] h-40 w-1.5 rotate-[35deg] bg-primary" />
-        <div className="pointer-events-none absolute -top-10 left-[31.5%] h-40 w-px rotate-[35deg] bg-primary/50" />
+        <div className="pointer-events-none absolute -top-24 left-1/2 h-48 w-[60%] -translate-x-1/2 rounded-full bg-accent/20 blur-3xl" />
+        <div className="pointer-events-none absolute inset-x-0 bottom-0 h-px bg-gradient-to-l from-transparent via-accent/60 to-transparent" />
         <div className="relative mx-auto flex max-w-7xl flex-wrap items-center justify-between gap-2 md:flex-nowrap">
           <h1 className="flex shrink-0 items-center gap-2 text-sm font-bold md:text-lg">
             <span className="flex h-7 w-7 items-center justify-center rounded-lg bg-primary text-primary-foreground"><MessageCircle className="h-4 w-4" /></span>
             محادثات العملاء
           </h1>
-          <nav className="order-last grid w-full grid-cols-4 items-center gap-1 md:order-none md:flex md:w-auto md:flex-1 md:justify-center">
+          <nav className="order-last -mx-4 flex w-[calc(100%+2rem)] snap-x items-center gap-2 overflow-x-auto px-4 pb-1 pt-2 [scrollbar-width:none] md:order-none md:mx-0 md:w-auto md:flex-1 md:justify-center md:px-0 [&::-webkit-scrollbar]:hidden">
             {tabs.map((t) => (
               <button key={t.k} onClick={() => { setView(t.k); if (t.k !== "chats") setOpenId(null); }}
-                className={`relative flex min-w-0 flex-col items-center justify-center gap-0.5 rounded-lg px-1 py-1.5 text-[11px] font-semibold leading-tight md:flex-row md:gap-1.5 md:px-3 md:text-sm ${view === t.k ? "bg-primary text-primary-foreground shadow" : "hover:bg-ink-foreground/10"}`}>
+                className={`relative flex shrink-0 snap-start items-center gap-2 whitespace-nowrap rounded-full border px-4 py-2 text-xs font-bold transition-all duration-200 md:text-sm ${view === t.k ? "border-accent bg-accent text-accent-foreground shadow-lg shadow-accent/30" : "border-ink-foreground/15 bg-ink-foreground/5 text-ink-foreground/85 hover:border-accent/50 hover:bg-ink-foreground/10"}`}>
                 <t.i className="h-4 w-4" />{t.l}
-                {t.n > 0 && <span className="absolute -top-1 left-1 rounded-full bg-destructive px-1.5 text-[10px] font-bold text-destructive-foreground">{t.n}</span>}
+                {t.n > 0 && <span className="absolute -top-1.5 left-0 min-w-5 rounded-full bg-destructive px-1.5 text-center text-[10px] font-bold text-destructive-foreground ring-2 ring-ink">{t.n}</span>}
               </button>
             ))}
           </nav>
