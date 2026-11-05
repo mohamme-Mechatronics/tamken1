@@ -301,18 +301,17 @@ function Dashboard({ pw, onLogout }: { pw: string; onLogout: () => void }) {
       )}
       <header className="relative overflow-hidden bg-ink px-4 py-3 text-ink-foreground md:px-8 lg:py-1">
         <div className="pointer-events-none absolute inset-x-0 bottom-0 h-px bg-gradient-to-l from-transparent via-accent/60 to-transparent" />
-        <div className="relative mx-auto flex max-w-7xl flex-wrap items-center justify-between gap-2 md:flex-nowrap">
-          <div className="flex shrink-0 items-center gap-2">
-            <button onClick={() => setMenu(true)} aria-label="فتح قائمة الأقسام" aria-expanded="false" aria-haspopup="dialog"
-              className="flex items-center gap-2 rounded-lg border border-ink-foreground/15 bg-ink-foreground/5 px-2.5 py-2 transition-colors hover:border-accent/60 hover:bg-ink-foreground/10">
-              <Menu className="h-5 w-5" />
-              <span className="hidden text-xs font-bold sm:inline">{cur.l}</span>
-            </button>
-            <h1 className="flex items-center gap-2 text-sm font-bold md:text-lg">
-              <span className="flex h-7 w-7 items-center justify-center rounded-lg bg-primary text-primary-foreground"><MessageCircle className="h-4 w-4" /></span>
-              محادثات العملاء
-            </h1>
-          </div>
+        <div className="relative mx-auto flex max-w-7xl flex-nowrap items-center gap-2 overflow-x-auto px-1 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+          <button onClick={() => setMenu(true)} aria-label="فتح قائمة الأقسام" aria-expanded="false" aria-haspopup="dialog"
+            className="flex shrink-0 items-center gap-2 rounded-lg border border-ink-foreground/15 bg-ink-foreground/5 px-2.5 py-2 transition-colors hover:border-accent/60 hover:bg-ink-foreground/10">
+            <Menu className="h-5 w-5" />
+            <span className="hidden text-xs font-bold sm:inline">{cur.l}</span>
+          </button>
+          <h1 className="flex shrink-0 items-center gap-2 text-sm font-bold md:text-lg">
+            <span className="flex h-7 w-7 items-center justify-center rounded-lg bg-primary text-primary-foreground"><MessageCircle className="h-4 w-4" /></span>
+            محادثات العملاء
+          </h1>
+          <BrandMark className="shrink-0 text-[15px] md:text-[16px] lg:text-[14px]" />
           <div className="flex shrink-0 items-center gap-1">
             <ConnectionSettings pw={pw} />
             <button onClick={toggleDark} aria-label={dark ? "الوضع الفاتح" : "الوضع الليلي"} className="rounded-md p-1.5 hover:bg-ink-foreground/10">
@@ -322,7 +321,6 @@ function Dashboard({ pw, onLogout }: { pw: string; onLogout: () => void }) {
               aria-label={muted ? "تشغيل صوت التنبيه" : "كتم صوت التنبيه"} className="rounded-md p-1.5 hover:bg-ink-foreground/10">
               {muted ? <BellOff className="h-4 w-4" /> : <Bell className="h-4 w-4" />}
             </button>
-            <BrandMark className="shrink-0 text-[15px] md:text-[16px] lg:text-[14px]" />
           </div>
         </div>
       </header>
