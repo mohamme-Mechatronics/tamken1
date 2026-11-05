@@ -136,7 +136,11 @@ function Login({ onOk }: { onOk: (p: string) => void }) {
           finally { setBusy(false); }
         }}
       >
-        <div className="flex flex-col items-center gap-2 text-primary"><BrandMark className="text-[26px] text-foreground" /><h1 className="text-xl font-bold">محادثات العملاء</h1></div>
+        <div className="flex flex-col items-center gap-2 text-primary">
+          <BrandMark className="text-[26px] text-foreground" />
+          <h1 className="text-xl font-bold">محادثات العملاء</h1>
+          <span className="edge-rule h-px w-28" />
+        </div>
         <label className="block text-sm text-muted-foreground">كلمة مرور اللوحة</label>
         <div className="relative">
           <Lock className="absolute right-3 top-2.5 h-4 w-4 text-muted-foreground" />
@@ -300,7 +304,7 @@ function Dashboard({ pw, onLogout }: { pw: string; onLogout: () => void }) {
         </div>
       )}
       <header className="relative overflow-hidden bg-ink px-2 py-2.5 text-ink-foreground md:px-4 lg:py-1">
-        <div className="pointer-events-none absolute inset-x-0 bottom-0 h-px bg-gradient-to-l from-transparent via-accent/60 to-transparent" />
+        <div className="pointer-events-none absolute inset-x-0 bottom-0 h-px edge-rule" />
         <div className="relative mx-auto flex max-w-7xl flex-nowrap items-center justify-between gap-2 overflow-x-auto [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
           <button onClick={() => setMenu(true)} aria-label="فتح قائمة الأقسام" aria-expanded="false" aria-haspopup="dialog"
             className="flex shrink-0 items-center gap-2 rounded-lg border border-ink-foreground/15 bg-ink-foreground/5 px-2 py-1.5 transition-colors hover:border-accent/60 hover:bg-ink-foreground/10">
@@ -355,7 +359,7 @@ function Dashboard({ pw, onLogout }: { pw: string; onLogout: () => void }) {
                 className={`relative mt-2 lg:mt-1.5 flex flex-1 shrink-0 items-center justify-center gap-1.5 whitespace-nowrap rounded-lg px-3 py-1.5 text-xs md:text-sm ${s === "human" ? `bg-st-human-fg text-background ${filter === s ? "font-semibold ring-2 ring-st-human-fg ring-offset-1" : ""}` : filter === s ? "bg-primary font-semibold text-primary-foreground" : "bg-muted text-foreground"}`}>
                 {Ic && <Ic className="h-4 w-4" />}{s === "all" ? "الكل" : STAGES[s]}
                 <span className="rounded-full bg-background/70 px-1.5 text-[11px] font-bold text-foreground">{s === "all" ? customers.length : customers.filter((c) => c.stage === s).length}</span>
-                {n > 0 && <span className="absolute -top-2 -left-1 min-w-[18px] animate-pulse rounded-full bg-destructive px-1 text-[10px] font-bold leading-[18px] text-destructive-foreground">{n}</span>}
+                {n > 0 && <span className="absolute -top-2 -left-1 min-w-[18px] animate-pulse rounded-full bg-brand-red px-1 text-[10px] font-bold leading-[18px] text-brand-red-foreground">{n}</span>}
               </button>
             );})}
           </div>
@@ -420,10 +424,10 @@ function Dashboard({ pw, onLogout }: { pw: string; onLogout: () => void }) {
         </>}
       </div>
       <footer className="relative overflow-hidden bg-ink py-2.5 lg:hidden text-center text-xs font-semibold text-ink-foreground">
-        <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-l from-transparent via-accent/60 to-transparent" />
+        <div className="pointer-events-none absolute inset-x-0 top-0 h-px edge-rule" />
         تمكين — لحلول الطاقة
         <span className="absolute left-6 top-1/2 hidden h-px w-32 -translate-y-1/2 bg-ink-foreground/30 md:block" />
-        <span className="absolute left-[9.5rem] top-1/2 hidden -translate-y-1/2 text-primary md:block">⌁</span>
+        <span className="absolute left-[9.5rem] top-1/2 hidden -translate-y-1/2 text-brand-red md:block">⌁</span>
       </footer>
 
       {menu && (
@@ -438,10 +442,10 @@ function Dashboard({ pw, onLogout }: { pw: string; onLogout: () => void }) {
               {tabs.map((t) => (
                 <button key={t.k} onClick={() => { setView(t.k); if (t.k !== "chats") setOpenId(null); setMenu(false); }}
                   aria-current={view === t.k ? "page" : undefined}
-                  className={`relative flex w-full items-center gap-2.5 rounded-lg px-2.5 py-2 text-[13px] font-bold transition-colors ${view === t.k ? "bg-accent text-accent-foreground shadow-lg shadow-accent/25" : "text-ink-foreground/85 hover:bg-ink-foreground/10"}`}>
+                  className={`relative flex w-full items-center gap-2.5 rounded-lg px-2.5 py-2 text-[13px] font-bold transition-colors ${view === t.k ? "bg-accent text-accent-foreground shadow-lg shadow-accent/25 before:absolute before:inset-y-1 before:right-0 before:w-[3px] before:rounded-full before:bg-brand-red" : "text-ink-foreground/85 hover:bg-ink-foreground/10"}`}>
                   <t.i className="h-5 w-5 shrink-0" />
                   <span className="flex-1 text-right">{t.l}</span>
-                  {t.n > 0 && <span className="min-w-6 rounded-full bg-destructive px-1.5 text-center text-[11px] font-bold text-destructive-foreground">{t.n}</span>}
+                  {t.n > 0 && <span className="min-w-6 rounded-full bg-brand-red px-1.5 text-center text-[11px] font-bold text-brand-red-foreground">{t.n}</span>}
                 </button>
               ))}
             </nav>
