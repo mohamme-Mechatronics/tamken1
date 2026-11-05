@@ -56,6 +56,24 @@ export type Database = {
         }
         Relationships: []
       }
+      bot_sessions: {
+        Row: {
+          data: Json
+          phone: string
+          updated_at: string
+        }
+        Insert: {
+          data?: Json
+          phone: string
+          updated_at?: string
+        }
+        Update: {
+          data?: Json
+          phone?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
       bot_steps: {
         Row: {
           active: boolean
