@@ -617,12 +617,12 @@ export function QuoteBuilder({ pw, initialCustomerId }: { pw: string; initialCus
         )}
         <div className="grid grid-cols-2 gap-1.5 sm:grid-cols-5">
           {TABLES.map((t) => { const n = countIn(t.k), all = t.k === "custom" ? 0 : byCat[t.k]?.length ?? 0; return (
-            <button key={t.k} onClick={() => { setActive(t.k); setQ(""); }}
+            <button key={t.k} onClick={() => { setActive(t.k); setQ(""); }} style={{ minWidth: 0 }}
               className={`group relative flex items-center gap-1.5 rounded-lg border px-2 py-1 text-right transition-all duration-200 hover:shadow-md ${active === t.k ? "border-accent bg-accent text-accent-foreground shadow" : "bg-card"}`}>
               <t.i className={`h-3.5 w-3.5 shrink-0 ${active === t.k ? "" : "text-primary"}`} />
               <span className="truncate text-[11px] font-bold leading-tight">{t.t}</span>
               <span className="mr-auto shrink-0 text-[9px] opacity-70">{t.k === "custom" ? "حر" : all}</span>
-              {n > 0 && <span className="absolute -top-1.5 -left-1.5 flex h-4 min-w-4 items-center justify-center rounded-full bg-destructive px-1 text-[9px] font-bold text-destructive-foreground animate-in zoom-in">{n}</span>}
+              {n > 0 && <span className="absolute -top-1.5 left-0.5 flex h-4 min-w-4 items-center justify-center rounded-full bg-destructive px-1 text-[9px] font-bold text-destructive-foreground animate-in zoom-in">{n}</span>}
             </button>); })}
         </div>
 
@@ -640,20 +640,20 @@ export function QuoteBuilder({ pw, initialCustomerId }: { pw: string; initialCus
             </div>
           ) : (
             <div className="min-h-0 flex-1 overflow-auto">
-              <table className="w-full text-sm">
-                <thead className="sticky top-0 z-10 bg-card text-xs text-muted-foreground"><tr className="border-b"><th className="w-10 p-2" /><th className="p-2 text-right">الصنف</th><th className="p-2 text-right">السعر</th><th className="w-40 p-2 text-right">الكمية</th></tr></thead>
+              <table className="w-full table-fixed text-sm">
+                <thead className="sticky top-0 z-10 bg-card text-xs text-muted-foreground"><tr className="border-b"><th className="w-8 p-1 sm:w-10 sm:p-2" /><th className="p-1 text-right sm:p-2">الصنف</th><th className="w-[4.5rem] p-1 text-right sm:w-28 sm:p-2">السعر</th><th className="w-[4.25rem] p-1 text-right sm:w-36 sm:p-2">الكمية</th></tr></thead>
                 <tbody>
                   {list.length === 0 && <tr><td colSpan={4} className="p-6 text-center text-muted-foreground">لا توجد أصناف</td></tr>}
                   {list.map((r) => { const l = lines[r.key]; const sp = specsOf(r); return (
                     <tr key={r.key} onClick={() => toggle(r)} className={`cursor-pointer border-b transition-colors ${l ? "bg-accent text-accent-foreground" : "hover:bg-muted/50"}`}>
-                      <td className="p-2"><span className={`flex h-5 w-5 items-center justify-center rounded-md border-2 transition-all ${l ? "border-accent-foreground/25 bg-accent-foreground text-accent scale-110" : "border-muted-foreground/40"}`}>{l && <Check className="h-3.5 w-3.5" />}</span></td>
-                      <td className="p-2"><div className="font-semibold">{r.name}</div>{sp.length > 0 && <div className={`line-clamp-1 text-[11px] ${l ? "text-accent-foreground/75" : "text-muted-foreground"}`}>{sp.slice(0, 3).join(" · ")}</div>}</td>
-                      <td className={`whitespace-nowrap p-2 font-bold ${l ? "text-accent-foreground" : "text-primary"}`}>{r.price != null ? usd(Number(r.price)) : "-"}{r.unit && <span className={`text-[10px] font-normal ${l ? "text-accent-foreground/75" : "text-muted-foreground"}`}> / {r.unit}</span>}</td>
-                      <td className="p-2" onClick={(e) => l && e.stopPropagation()}>
+                      <td className="p-1 sm:p-2"><span className={`flex h-5 w-5 items-center justify-center rounded-md border-2 transition-all ${l ? "border-accent-foreground/25 bg-accent-foreground text-accent scale-110" : "border-muted-foreground/40"}`}>{l && <Check className="h-3.5 w-3.5" />}</span></td>
+                      <td className="min-w-0 break-words p-1 sm:p-2"><div className="font-semibold">{r.name}</div>{sp.length > 0 && <div className={`line-clamp-1 text-[11px] ${l ? "text-accent-foreground/75" : "text-muted-foreground"}`}>{sp.slice(0, 3).join(" · ")}</div>}</td>
+                      <td className={`p-1 font-bold sm:whitespace-nowrap sm:p-2 ${l ? "text-accent-foreground" : "text-primary"}`}>{r.price != null ? usd(Number(r.price)) : "-"}{r.unit && <span className={`text-[10px] font-normal ${l ? "text-accent-foreground/75" : "text-muted-foreground"}`}> / {r.unit}</span>}</td>
+                      <td className="p-1 sm:p-2" onClick={(e) => l && e.stopPropagation()}>
                         {l && (
-                          <div className="flex items-center gap-1 animate-in fade-in zoom-in-95 duration-200">
+                          <div className="flex flex-col-reverse items-center gap-1 sm:flex-row animate-in fade-in zoom-in-95 duration-200">
                             <button onClick={() => setQty(r.key, l.qty - 1)} className="rounded-md bg-muted p-1"><Minus className="h-3.5 w-3.5" /></button>
-                            <input type="number" min={1} value={l.qty} onChange={(e) => setQty(r.key, Number(e.target.value))} autoFocus className="w-14 rounded-md border bg-background px-1 py-0.5 text-center text-sm font-bold" />
+                            <input type="number" min={1} value={l.qty} onChange={(e) => setQty(r.key, Number(e.target.value))} autoFocus className="w-12 min-w-0 rounded-md border bg-background px-1 py-0.5 text-center text-sm font-bold" />
                             <button onClick={() => setQty(r.key, l.qty + 1)} className="rounded-md bg-muted p-1"><Plus className="h-3.5 w-3.5" /></button>
                           </div>)}
                       </td>
