@@ -61,7 +61,7 @@ export const Route = createFileRoute("/")({
 const PW_KEY = "actes_pw";
 
 // علامة القناة الصغيرة فوق كل محادثة
-const CHAN: Record<string, { label: string; Icon: typeof MessageCircle; cls: string }> = {
+const CHAN = {
   whatsapp: { label: "واتساب", Icon: MessageCircle, cls: "bg-primary/10 text-primary ring-primary/25" },
   telegram: { label: "تلجرام", Icon: Send, cls: "bg-accent/25 text-accent-foreground ring-accent/45" },
 };
@@ -371,7 +371,7 @@ function Dashboard({ pw, onLogout }: { pw: string; onLogout: () => void }) {
           </div>
           <ul className="overflow-hidden rounded-lg border border-border lg:min-h-0 lg:flex-1 lg:overflow-y-auto lg:overscroll-contain">
             {shown.map((c) => {
-              const ch = CHAN[(c.channel ?? "whatsapp") as string] ?? CHAN.whatsapp;
+              const ch = CHAN[c.channel === "telegram" ? "telegram" : "whatsapp"];
               return (
               <li key={c.id} onClick={() => setOpenId(c.id)} className={`border-b border-r-4 border-b-border transition last:border-b-0 hover:bg-muted/60 ${openId === c.id ? "border-r-primary bg-primary/10" : "border-r-transparent"}`}>
                 <div className="flex items-center px-3 pt-1.5">
