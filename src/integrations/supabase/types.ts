@@ -218,6 +218,7 @@ export type Database = {
       customers: {
         Row: {
           bot_paused: boolean
+          channel: string
           city: string | null
           created_at: string
           id: string
@@ -232,6 +233,7 @@ export type Database = {
         }
         Insert: {
           bot_paused?: boolean
+          channel?: string
           city?: string | null
           created_at?: string
           id?: string
@@ -246,6 +248,7 @@ export type Database = {
         }
         Update: {
           bot_paused?: boolean
+          channel?: string
           city?: string | null
           created_at?: string
           id?: string
