@@ -84,7 +84,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { name: "theme-color", content: "#15803d" },
+      { name: "theme-color", content: "#101725" },
       { title: "Tamken CRM" },
       { name: "description", content: "لوحة محادثات عملاء بوت تمكين" },
       { property: "og:type", content: "website" },
