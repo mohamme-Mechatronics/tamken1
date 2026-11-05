@@ -551,10 +551,10 @@ export function QuoteBuilder({ pw, initialCustomerId }: { pw: string; initialCus
           <h2 className="flex items-center gap-2 text-lg font-bold"><FilePlus2 className="h-5 w-5 text-primary" />إنشاء عرض سعر</h2>
           <div className="mr-auto flex flex-wrap items-center gap-1">
             {(["res", "com"] as const).map((k) => (
-              <button key={k} type="button" onClick={() => { setPath(path === k ? null : k); setComM(null); setTiers(null); setInvs(null); setInvKw(null); setDaily(""); }} className={`rounded-lg px-3 py-1.5 text-xs font-bold ${path === k ? "bg-primary text-primary-foreground" : "bg-muted hover:bg-muted/70"}`}>{k === "res" ? "سكني" : "تجاري"}</button>
+              <button key={k} type="button" onClick={() => { setPath(path === k ? null : k); setComM(null); setTiers(null); setInvs(null); setInvKw(null); setDaily(""); }} className={`rounded-lg px-3 py-1.5 text-xs font-bold ${path === k ? "bg-accent text-accent-foreground" : "bg-muted hover:bg-muted/70"}`}>{k === "res" ? "سكني" : "تجاري"}</button>
             ))}
             {path === "com" && (["bill", "kwh", "diesel"] as const).map((m) => (
-              <button key={m} type="button" onClick={() => { setComM(m); setDaily(""); }} className={`rounded-lg border px-2 py-1.5 text-xs font-semibold ${comM === m ? "border-primary bg-primary/10 text-primary" : "bg-card"}`}>{m === "bill" ? "فاتورة" : m === "kwh" ? "استهلاك شهري" : "الديزل"}</button>
+              <button key={m} type="button" onClick={() => { setComM(m); setDaily(""); }} className={`rounded-lg border px-2 py-1.5 text-xs font-semibold ${comM === m ? "border-accent bg-accent text-accent-foreground" : "bg-card"}`}>{m === "bill" ? "فاتورة" : m === "kwh" ? "استهلاك شهري" : "الديزل"}</button>
             ))}
             {(path === "res" || (path === "com" && comM)) && (
               <form onSubmit={(e) => { e.preventDefault(); const n = Number(daily); if (!(n > 0)) return; setInvKw(null); const opts = path === "res" ? optionsForResBill(n, kwhPrice) : optionsForCom(comM ?? "bill", n, kwhPrice); const ic = inverterChoices(opts); if (ic.length) { setTiers(null); setInvs(ic); return; } setInvs(null); const t = tiersFrom(opts); if (!t) { setTiers(null); return setMsg("لا توجد منظومة مناسبة — يُحوّل للموظف المختص"); } showTiers(t); }} className="flex items-center gap-1">
@@ -594,7 +594,7 @@ export function QuoteBuilder({ pw, initialCustomerId }: { pw: string; initialCus
             <div className="mb-1 text-xs font-bold">اختر مستوى الاستقلالية:</div>
             <div className="grid gap-1 sm:grid-cols-3">
               {([["low", "أقل استقلالية"], ["rec", "موصى به"], ["high", "أكثر استقلالية"]] as const).map(([k, label]) => { const p = tiers[k]; return p ? (
-                <button key={k} type="button" onClick={() => { setTiers(null); loadPreset(p); }} className={`rounded-lg border px-2 py-1.5 text-right text-xs hover:bg-muted ${k === "rec" ? "border-primary bg-primary/10" : "bg-card"}`}><div className="font-bold">{label}</div><div className="text-muted-foreground">{p.title}</div></button>
+                <button key={k} type="button" onClick={() => { setTiers(null); loadPreset(p); }} className={`rounded-lg border px-2 py-1.5 text-right text-xs ${k === "rec" ? "border-accent bg-accent text-accent-foreground" : "bg-card hover:bg-muted"}`}><div className="font-bold">{label}</div><div className={k === "rec" ? "text-accent-foreground/80" : "text-muted-foreground"}>{p.title}</div></button>
               ) : null; })}
             </div>
           </div>
@@ -603,7 +603,7 @@ export function QuoteBuilder({ pw, initialCustomerId }: { pw: string; initialCus
           <div className="max-h-96 overflow-y-auto rounded-xl border bg-muted/30 p-2 animate-in fade-in slide-in-from-top-2">
             <div className="mb-2 grid grid-cols-2 gap-1">
               {(["res", "com"] as const).map((k) => (
-                <button key={k} onClick={() => setPresetTab(k)} className={`rounded-lg px-3 py-1.5 text-sm font-bold ${presetTab === k ? "bg-primary text-primary-foreground" : "bg-card border"}`}>{k === "res" ? "منظومات سكنية" : "منظومات تجارية"}</button>))}
+                <button key={k} onClick={() => setPresetTab(k)} className={`rounded-lg px-3 py-1.5 text-sm font-bold ${presetTab === k ? "bg-accent text-accent-foreground" : "bg-card border"}`}>{k === "res" ? "منظومات سكنية" : "منظومات تجارية"}</button>))}
             </div>
             {[...new Set(PRESETS.filter((p) => (p.type ?? "res") === presetTab).map((p) => p.group))].map((g) => (
               <div key={g} className="mb-2">
@@ -618,7 +618,7 @@ export function QuoteBuilder({ pw, initialCustomerId }: { pw: string; initialCus
         <div className="grid grid-cols-2 gap-1.5 sm:grid-cols-5">
           {TABLES.map((t) => { const n = countIn(t.k), all = t.k === "custom" ? 0 : byCat[t.k]?.length ?? 0; return (
             <button key={t.k} onClick={() => { setActive(t.k); setQ(""); }}
-              className={`group relative flex items-center gap-1.5 rounded-lg border px-2 py-1 text-right transition-all duration-200 hover:shadow-md ${active === t.k ? "border-primary bg-primary text-primary-foreground shadow" : "bg-card"}`}>
+              className={`group relative flex items-center gap-1.5 rounded-lg border px-2 py-1 text-right transition-all duration-200 hover:shadow-md ${active === t.k ? "border-accent bg-accent text-accent-foreground shadow" : "bg-card"}`}>
               <t.i className={`h-3.5 w-3.5 shrink-0 ${active === t.k ? "" : "text-primary"}`} />
               <span className="truncate text-[11px] font-bold leading-tight">{t.t}</span>
               <span className="mr-auto shrink-0 text-[9px] opacity-70">{t.k === "custom" ? "حر" : all}</span>
@@ -645,10 +645,10 @@ export function QuoteBuilder({ pw, initialCustomerId }: { pw: string; initialCus
                 <tbody>
                   {list.length === 0 && <tr><td colSpan={4} className="p-6 text-center text-muted-foreground">لا توجد أصناف</td></tr>}
                   {list.map((r) => { const l = lines[r.key]; const sp = specsOf(r); return (
-                    <tr key={r.key} onClick={() => toggle(r)} className={`cursor-pointer border-b transition-colors ${l ? "bg-primary/10" : "hover:bg-muted/50"}`}>
-                      <td className="p-2"><span className={`flex h-5 w-5 items-center justify-center rounded-md border-2 transition-all ${l ? "border-primary bg-primary text-primary-foreground scale-110" : "border-muted-foreground/40"}`}>{l && <Check className="h-3.5 w-3.5" />}</span></td>
-                      <td className="p-2"><div className="font-semibold">{r.name}</div>{sp.length > 0 && <div className="line-clamp-1 text-[11px] text-muted-foreground">{sp.slice(0, 3).join(" · ")}</div>}</td>
-                      <td className="whitespace-nowrap p-2 font-bold text-primary">{r.price != null ? usd(Number(r.price)) : "-"}{r.unit && <span className="text-[10px] font-normal text-muted-foreground"> / {r.unit}</span>}</td>
+                    <tr key={r.key} onClick={() => toggle(r)} className={`cursor-pointer border-b transition-colors ${l ? "bg-accent text-accent-foreground" : "hover:bg-muted/50"}`}>
+                      <td className="p-2"><span className={`flex h-5 w-5 items-center justify-center rounded-md border-2 transition-all ${l ? "border-accent-foreground/25 bg-accent-foreground text-accent scale-110" : "border-muted-foreground/40"}`}>{l && <Check className="h-3.5 w-3.5" />}</span></td>
+                      <td className="p-2"><div className="font-semibold">{r.name}</div>{sp.length > 0 && <div className={`line-clamp-1 text-[11px] ${l ? "text-accent-foreground/75" : "text-muted-foreground"}`}>{sp.slice(0, 3).join(" · ")}</div>}</td>
+                      <td className={`whitespace-nowrap p-2 font-bold ${l ? "text-accent-foreground" : "text-primary"}`}>{r.price != null ? usd(Number(r.price)) : "-"}{r.unit && <span className={`text-[10px] font-normal ${l ? "text-accent-foreground/75" : "text-muted-foreground"}`}> / {r.unit}</span>}</td>
                       <td className="p-2" onClick={(e) => l && e.stopPropagation()}>
                         {l && (
                           <div className="flex items-center gap-1 animate-in fade-in zoom-in-95 duration-200">
