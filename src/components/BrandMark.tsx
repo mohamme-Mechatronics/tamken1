@@ -3,7 +3,7 @@
 // Arabic brand name and tagline underneath. Non-red parts use currentColor so
 // the parent's text colour controls them (dark header bar vs. light card).
 
-export function BrandMark({ className = "" }: { className?: string }) {
+export function BrandMark({ className = "", compact = false }: { className?: string; compact?: boolean }) {
   return (
     <span
       className={`inline-flex select-none flex-col items-center leading-none ${className}`}
@@ -17,7 +17,7 @@ export function BrandMark({ className = "" }: { className?: string }) {
       </span>
       <span className="mt-[0.22em] flex items-center gap-[0.4em] text-[0.40em] font-bold whitespace-nowrap">
         <span className="text-primary">تمكين</span>
-        <span>لأنظمة الطاقة وحلولها</span>
+        {!compact && <span>لأنظمة الطاقة وحلولها</span>}
       </span>
     </span>
   );
