@@ -143,39 +143,39 @@
   }
 }
 
-/* Tamken theme: royal blue + gold */
+/* Tamken theme: deep royal navy + solar gold */
 :root {
-  --background: oklch(0.982 0.005 250);
-  --foreground: oklch(0.24 0.05 265);
+  --background: oklch(0.984 0.004 248);
+  --foreground: oklch(0.21 0.04 266);
   --card: oklch(1 0 0);
   --card-foreground: oklch(0.24 0.05 265);
   --popover: oklch(1 0 0);
   --popover-foreground: oklch(0.24 0.05 265);
-  --primary: oklch(0.49 0.2 262);
+  --primary: oklch(0.42 0.18 265);
   --primary-foreground: oklch(0.99 0 0);
-  --ink: oklch(0.32 0.13 265);
+  --ink: oklch(0.21 0.04 266);
   --ink-foreground: oklch(0.98 0 0);
   --s-purple: oklch(0.42 0.14 305);
-  --s-green: oklch(0.6 0.13 165);
+  --s-green: oklch(0.72 0.15 75);
   --s-blue: oklch(0.62 0.16 255);
   --s-gray: oklch(0.5 0.03 255);
   --secondary: oklch(0.94 0.03 255);
-  --secondary-foreground: oklch(0.3 0.05 190);
+  --secondary-foreground: oklch(0.3 0.1 265);
   --muted: oklch(0.96 0.012 255);
-  --muted-foreground: oklch(0.5 0.02 200);
-  --accent: oklch(0.77 0.16 70);
+  --muted-foreground: oklch(0.5 0.03 260);
+  --accent: oklch(0.77 0.16 72);
   --accent-foreground: oklch(0.25 0.05 60);
   --border: oklch(0.91 0.015 255);
   --input: oklch(0.91 0.015 255);
-  --ring: oklch(0.49 0.2 262);
+  --ring: oklch(0.77 0.16 72);
   --bubble-in: oklch(1 0 0);
-  --bubble-out: oklch(0.93 0.05 150);
+  --bubble-out: oklch(0.93 0.04 260);
   --bubble-agent: oklch(0.94 0.06 85);
   --chat-bg: oklch(0.95 0.015 250);
   --st-quote: oklch(0.93 0.08 75);
   --st-quote-fg: oklch(0.42 0.11 60);
-  --st-buy: oklch(0.9 0.1 155);
-  --st-buy-fg: oklch(0.38 0.11 155);
+  --st-buy: oklch(0.92 0.07 85);
+  --st-buy-fg: oklch(0.42 0.1 70);
   --st-human: oklch(0.9 0.07 250);
   --st-human-fg: oklch(0.42 0.17 255);
   --st-cod: oklch(0.92 0.06 230);
@@ -184,7 +184,7 @@
   --st-sld-fg: oklch(0.42 0.14 300);
 }
 .dark {
-  --background: oklch(0.17 0.03 265);
+  --background: oklch(0.16 0.035 266);
   --foreground: oklch(0.94 0.01 95);
   --card: oklch(0.22 0.04 265);
   --card-foreground: oklch(0.94 0.01 95);
@@ -195,10 +195,10 @@
   --ink: oklch(0.16 0.06 265);
   --ink-foreground: oklch(0.98 0 0);
   --s-purple: oklch(0.6 0.14 305);
-  --s-green: oklch(0.65 0.13 165);
+  --s-green: oklch(0.75 0.14 75);
   --s-blue: oklch(0.65 0.15 255);
   --s-gray: oklch(0.6 0.03 255);
-  --secondary: oklch(0.3 0.04 190);
+  --secondary: oklch(0.3 0.05 265);
   --secondary-foreground: oklch(0.92 0.02 180);
   --muted: oklch(0.26 0.03 265);
   --muted-foreground: oklch(0.7 0.02 200);
@@ -208,13 +208,13 @@
   --input: oklch(1 0 0 / 15%);
   --ring: oklch(0.62 0.19 260);
   --bubble-in: oklch(0.26 0.03 265);
-  --bubble-out: oklch(0.36 0.06 165);
+  --bubble-out: oklch(0.34 0.08 265);
   --bubble-agent: oklch(0.36 0.06 75);
   --chat-bg: oklch(0.15 0.03 265);
   --st-quote: oklch(0.35 0.07 70);
   --st-quote-fg: oklch(0.88 0.1 80);
-  --st-buy: oklch(0.35 0.08 155);
-  --st-buy-fg: oklch(0.88 0.12 155);
+  --st-buy: oklch(0.35 0.07 75);
+  --st-buy-fg: oklch(0.88 0.1 80);
   --st-human: oklch(0.35 0.1 255);
   --st-human-fg: oklch(0.88 0.08 250);
   --st-cod: oklch(0.35 0.07 235);
@@ -230,7 +230,7 @@
   --color-wa-bar: oklch(0.17 0 0);
   --color-wa-bot: oklch(0.27 0.005 250);
   --color-wa-me: oklch(0.42 0.14 255);
-  --color-wa-agent: oklch(0.36 0.09 160);
+  --color-wa-agent: oklch(0.45 0.1 70);
   --color-wa-text: oklch(0.97 0 0);
   --color-wa-muted: oklch(0.75 0.01 250);
   --color-wa-link: oklch(0.68 0.15 245);
@@ -262,4 +262,19 @@
   visibility: hidden !important;
   pointer-events: none !important;
   opacity: 0 !important;
+}
+
+body {
+  background-image: radial-gradient(ellipse 80% 40% at 50% -10%, color-mix(in oklab, var(--accent) 14%, transparent), transparent 70%);
+  background-attachment: fixed;
+}
+@utility glass-nav {
+  background: color-mix(in oklab, var(--card) 78%, transparent);
+  backdrop-filter: blur(16px) saturate(150%);
+  border-bottom: 1px solid color-mix(in oklab, var(--accent) 25%, var(--border));
+}
+@utility card-elevated {
+  background: var(--card);
+  border: 1px solid var(--border);
+  box-shadow: 0 1px 2px color-mix(in oklab, var(--ink) 6%, transparent), 0 12px 32px -16px color-mix(in oklab, var(--primary) 28%, transparent);
 }
