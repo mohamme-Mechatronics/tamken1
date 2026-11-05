@@ -359,7 +359,7 @@ function Dashboard({ pw, onLogout }: { pw: string; onLogout: () => void }) {
                 className={`relative mt-2 lg:mt-1.5 flex flex-1 shrink-0 items-center justify-center gap-1.5 whitespace-nowrap rounded-lg px-3 py-1.5 text-xs md:text-sm ${s === "human" ? `bg-st-human-fg text-background ${filter === s ? "font-semibold ring-2 ring-st-human-fg ring-offset-1" : ""}` : filter === s ? "bg-primary font-semibold text-primary-foreground" : "bg-muted text-foreground"}`}>
                 {Ic && <Ic className="h-4 w-4" />}{s === "all" ? "الكل" : STAGES[s]}
                 <span className="rounded-full bg-background/70 px-1.5 text-[11px] font-bold text-foreground">{s === "all" ? customers.length : customers.filter((c) => c.stage === s).length}</span>
-                {n > 0 && <span className="absolute -top-2 -left-1 min-w-[18px] animate-pulse rounded-full bg-brand-red px-1 text-[10px] font-bold leading-[18px] text-brand-red-foreground">{n}</span>}
+                {n > 0 && <span className="absolute -top-2 -left-1 min-w-[18px] animate-pulse rounded-full bg-accent px-1 text-[10px] font-bold leading-[18px] text-accent-foreground">{n}</span>}
               </button>
             );})}
           </div>
@@ -427,7 +427,7 @@ function Dashboard({ pw, onLogout }: { pw: string; onLogout: () => void }) {
         <div className="pointer-events-none absolute inset-x-0 top-0 h-px edge-rule" />
         تمكين — لحلول الطاقة
         <span className="absolute left-6 top-1/2 hidden h-px w-32 -translate-y-1/2 bg-ink-foreground/30 md:block" />
-        <span className="absolute left-[9.5rem] top-1/2 hidden -translate-y-1/2 text-brand-red md:block">⌁</span>
+        <span className="absolute left-[9.5rem] top-1/2 hidden -translate-y-1/2 text-accent md:block">⌁</span>
       </footer>
 
       {menu && (
@@ -442,10 +442,10 @@ function Dashboard({ pw, onLogout }: { pw: string; onLogout: () => void }) {
               {tabs.map((t) => (
                 <button key={t.k} onClick={() => { setView(t.k); if (t.k !== "chats") setOpenId(null); setMenu(false); }}
                   aria-current={view === t.k ? "page" : undefined}
-                  className={`relative flex w-full items-center gap-2.5 rounded-lg px-2.5 py-2 text-[13px] font-bold transition-colors ${view === t.k ? "bg-accent text-accent-foreground shadow-lg shadow-accent/25 before:absolute before:inset-y-1 before:right-0 before:w-[3px] before:rounded-full before:bg-brand-red" : "text-ink-foreground/85 hover:bg-ink-foreground/10"}`}>
+                  className={`relative flex w-full items-center gap-2.5 rounded-lg px-2.5 py-2 text-[13px] font-bold transition-colors ${view === t.k ? "bg-accent text-accent-foreground shadow-lg shadow-accent/25 before:absolute before:inset-y-1 before:right-0 before:w-[3px] before:rounded-full before:bg-primary" : "text-ink-foreground/85 hover:bg-ink-foreground/10"}`}>
                   <t.i className="h-5 w-5 shrink-0" />
                   <span className="flex-1 text-right">{t.l}</span>
-                  {t.n > 0 && <span className="min-w-6 rounded-full bg-brand-red px-1.5 text-center text-[11px] font-bold text-brand-red-foreground">{t.n}</span>}
+                  {t.n > 0 && <span className="min-w-6 rounded-full bg-accent px-1.5 text-center text-[11px] font-bold text-accent-foreground">{t.n}</span>}
                 </button>
               ))}
             </nav>
