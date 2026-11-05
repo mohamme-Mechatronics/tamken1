@@ -60,6 +60,12 @@ export const Route = createFileRoute("/")({
 
 const PW_KEY = "actes_pw";
 
+// علامة القناة الصغيرة فوق كل محادثة
+const CHAN = {
+  whatsapp: { label: "واتساب", Icon: MessageCircle, cls: "bg-primary/10 text-primary ring-primary/25" },
+  telegram: { label: "تلجرام", Icon: Send, cls: "bg-accent/25 text-accent-foreground ring-accent/45" },
+};
+
 const stageClass: Record<string, string> = {
   new: "bg-muted text-muted-foreground",
   quote: "bg-st-quote text-st-quote-fg",
@@ -364,8 +370,16 @@ function Dashboard({ pw, onLogout }: { pw: string; onLogout: () => void }) {
             );})}
           </div>
           <ul className="overflow-hidden rounded-lg border border-border lg:min-h-0 lg:flex-1 lg:overflow-y-auto lg:overscroll-contain">
-            {shown.map((c) => (
-              <li key={c.id} onClick={() => setOpenId(c.id)} className={`flex cursor-pointer items-center gap-3 border-b border-r-4 border-b-border px-3 py-2.5 transition last:border-b-0 hover:bg-muted/60 ${openId === c.id ? "border-r-primary bg-primary/10" : "border-r-transparent"}`}>
+            {shown.map((c) => {
+              const ch = CHAN[c.channel === "telegram" ? "telegram" : "whatsapp"];
+              return (
+              <li key={c.id} onClick={() => setOpenId(c.id)} className={`border-b border-r-4 border-b-border transition last:border-b-0 hover:bg-muted/60 ${openId === c.id ? "border-r-primary bg-primary/10" : "border-r-transparent"}`}>
+                <div className="flex items-center px-3 pt-1.5">
+                  <span className={`ms-auto inline-flex items-center gap-1 rounded-full px-1.5 py-[1px] text-[9px] font-semibold leading-[14px] ring-1 ${ch.cls}`}>
+                    <ch.Icon className="h-2.5 w-2.5" />{ch.label}
+                  </span>
+                </div>
+                <div className="flex cursor-pointer items-center gap-3 px-3 pb-2.5 pt-1">
                 <div className="relative flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-muted text-muted-foreground">
                   <User className="h-5 w-5" /><span className="absolute bottom-0 left-0 h-2.5 w-2.5 rounded-full border-2 border-card bg-s-green" />
                 </div>
@@ -380,8 +394,10 @@ function Dashboard({ pw, onLogout }: { pw: string; onLogout: () => void }) {
                 <span className={`hidden shrink-0 rounded-full px-2.5 py-0.5 text-[11px] font-medium sm:inline ${stageClass[c.stage] ?? stageClass["new"]}`}>{STAGES[c.stage as Stage] ?? c.stage}</span>
                 <div className="line-clamp-2 min-w-0 flex-1 text-xs text-muted-foreground">{c.last_message}</div>
                 <span className="hidden shrink-0 text-xs text-muted-foreground sm:block">{fmt(c.last_at)}</span>
+                </div>
               </li>
-            ))}
+              );
+            })}
             {!isLoading && shown.length === 0 && (
               <li className="p-6 text-center text-sm text-muted-foreground">
                 {customers.length === 0 ? "لا توجد محادثات بعد — ستظهر هنا فور تواصل العملاء مع البوت" : "لا توجد نتائج"}

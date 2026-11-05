@@ -14,6 +14,7 @@ const Body = z.object({
   media_url: z.string().url().max(1000).optional().nullable(),
   mime: z.string().max(120).optional().nullable(),
   file_name: z.string().max(300).optional().nullable(),
+  channel: z.enum(["whatsapp", "telegram"]).optional().nullable(),
   text: z.string().max(4000).default(""),
 });
 
@@ -51,13 +52,15 @@ export const Route = createFileRoute("/api/public/bot-message")({
 
           const patch: {
             last_at: string; last_message?: string; name?: string; city?: string;
-            stage?: string; system?: string; unread?: number;
+            stage?: string; system?: string; unread?: number; channel?: string;
           } = { last_at: new Date().toISOString() };
           if (d.text.trim()) patch.last_message = d.kind === "pdf" ? `📄 ${d.text}` : d.text;
           if (d.name) patch.name = d.name;
           if (d.city) patch.city = d.city;
           if (stage) patch.stage = stage;
           if (d.system) patch.system = d.system;
+          // قناة المحادثة: تُمسح فقط عندما يحدّدها البوت صراحة، وإلا تبقى كما هي
+          if (d.channel) patch.channel = d.channel;
           const movedStage = !!stage && stage !== existing?.stage;
 
           let id = existing?.id;
