@@ -61,7 +61,6 @@ export const Route = createFileRoute("/")({
 const PW_KEY = "actes_pw";
 
 const stageClass: Record<string, string> = {
-  new: "bg-muted text-muted-foreground",
   quote: "bg-st-quote text-st-quote-fg",
   sld: "bg-st-sld text-st-sld-fg",
   cod: "bg-st-cod text-st-cod-fg",
