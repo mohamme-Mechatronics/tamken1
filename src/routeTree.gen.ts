@@ -11,6 +11,7 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as ApiPublicAppVersionRouteImport } from './routes/api/public/app-version'
+import { Route as ApiPublicBotAgentRouteImport } from './routes/api/public/bot-agent'
 import { Route as ApiPublicBotButtonLockRouteImport } from './routes/api/public/bot-button-lock'
 import { Route as ApiPublicBotCatalogRouteImport } from './routes/api/public/bot-catalog'
 import { Route as ApiPublicBotDiagnoseRouteImport } from './routes/api/public/bot-diagnose'
@@ -19,6 +20,7 @@ import { Route as ApiPublicBotMessageRouteImport } from './routes/api/public/bot
 import { Route as ApiPublicBotOrderRouteImport } from './routes/api/public/bot-order'
 import { Route as ApiPublicBotOrderStatusRouteImport } from './routes/api/public/bot-order-status'
 import { Route as ApiPublicBotPausedRouteImport } from './routes/api/public/bot-paused'
+import { Route as ApiPublicBotPdfRouteImport } from './routes/api/public/bot-pdf'
 import { Route as ApiPublicBotReportRequestRouteImport } from './routes/api/public/bot-report-request'
 import { Route as ApiPublicBotSessionRouteImport } from './routes/api/public/bot-session'
 import { Route as ApiPublicBotTicketRouteImport } from './routes/api/public/bot-ticket'
@@ -33,6 +35,11 @@ const IndexRoute = IndexRouteImport.update({
 const ApiPublicAppVersionRoute = ApiPublicAppVersionRouteImport.update({
   id: '/api/public/app-version',
   path: '/api/public/app-version',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ApiPublicBotAgentRoute = ApiPublicBotAgentRouteImport.update({
+  id: '/api/public/bot-agent',
+  path: '/api/public/bot-agent',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ApiPublicBotButtonLockRoute = ApiPublicBotButtonLockRouteImport.update({
@@ -75,6 +82,11 @@ const ApiPublicBotPausedRoute = ApiPublicBotPausedRouteImport.update({
   path: '/api/public/bot-paused',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ApiPublicBotPdfRoute = ApiPublicBotPdfRouteImport.update({
+  id: '/api/public/bot-pdf',
+  path: '/api/public/bot-pdf',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ApiPublicBotReportRequestRoute =
   ApiPublicBotReportRequestRouteImport.update({
     id: '/api/public/bot-report-request',
@@ -106,6 +118,7 @@ const ApiPublicJobsGithubBackupRoute =
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/api/public/app-version': typeof ApiPublicAppVersionRoute
+  '/api/public/bot-agent': typeof ApiPublicBotAgentRoute
   '/api/public/bot-button-lock': typeof ApiPublicBotButtonLockRoute
   '/api/public/bot-catalog': typeof ApiPublicBotCatalogRoute
   '/api/public/bot-diagnose': typeof ApiPublicBotDiagnoseRoute
@@ -114,6 +127,7 @@ export interface FileRoutesByFullPath {
   '/api/public/bot-order': typeof ApiPublicBotOrderRoute
   '/api/public/bot-order-status': typeof ApiPublicBotOrderStatusRoute
   '/api/public/bot-paused': typeof ApiPublicBotPausedRoute
+  '/api/public/bot-pdf': typeof ApiPublicBotPdfRoute
   '/api/public/bot-report-request': typeof ApiPublicBotReportRequestRoute
   '/api/public/bot-session': typeof ApiPublicBotSessionRoute
   '/api/public/bot-ticket': typeof ApiPublicBotTicketRoute
@@ -123,6 +137,7 @@ export interface FileRoutesByFullPath {
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/api/public/app-version': typeof ApiPublicAppVersionRoute
+  '/api/public/bot-agent': typeof ApiPublicBotAgentRoute
   '/api/public/bot-button-lock': typeof ApiPublicBotButtonLockRoute
   '/api/public/bot-catalog': typeof ApiPublicBotCatalogRoute
   '/api/public/bot-diagnose': typeof ApiPublicBotDiagnoseRoute
@@ -131,6 +146,7 @@ export interface FileRoutesByTo {
   '/api/public/bot-order': typeof ApiPublicBotOrderRoute
   '/api/public/bot-order-status': typeof ApiPublicBotOrderStatusRoute
   '/api/public/bot-paused': typeof ApiPublicBotPausedRoute
+  '/api/public/bot-pdf': typeof ApiPublicBotPdfRoute
   '/api/public/bot-report-request': typeof ApiPublicBotReportRequestRoute
   '/api/public/bot-session': typeof ApiPublicBotSessionRoute
   '/api/public/bot-ticket': typeof ApiPublicBotTicketRoute
@@ -141,6 +157,7 @@ export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/api/public/app-version': typeof ApiPublicAppVersionRoute
+  '/api/public/bot-agent': typeof ApiPublicBotAgentRoute
   '/api/public/bot-button-lock': typeof ApiPublicBotButtonLockRoute
   '/api/public/bot-catalog': typeof ApiPublicBotCatalogRoute
   '/api/public/bot-diagnose': typeof ApiPublicBotDiagnoseRoute
@@ -149,6 +166,7 @@ export interface FileRoutesById {
   '/api/public/bot-order': typeof ApiPublicBotOrderRoute
   '/api/public/bot-order-status': typeof ApiPublicBotOrderStatusRoute
   '/api/public/bot-paused': typeof ApiPublicBotPausedRoute
+  '/api/public/bot-pdf': typeof ApiPublicBotPdfRoute
   '/api/public/bot-report-request': typeof ApiPublicBotReportRequestRoute
   '/api/public/bot-session': typeof ApiPublicBotSessionRoute
   '/api/public/bot-ticket': typeof ApiPublicBotTicketRoute
@@ -160,6 +178,7 @@ export interface FileRouteTypes {
   fullPaths:
     | '/'
     | '/api/public/app-version'
+    | '/api/public/bot-agent'
     | '/api/public/bot-button-lock'
     | '/api/public/bot-catalog'
     | '/api/public/bot-diagnose'
@@ -168,6 +187,7 @@ export interface FileRouteTypes {
     | '/api/public/bot-order'
     | '/api/public/bot-order-status'
     | '/api/public/bot-paused'
+    | '/api/public/bot-pdf'
     | '/api/public/bot-report-request'
     | '/api/public/bot-session'
     | '/api/public/bot-ticket'
@@ -177,6 +197,7 @@ export interface FileRouteTypes {
   to:
     | '/'
     | '/api/public/app-version'
+    | '/api/public/bot-agent'
     | '/api/public/bot-button-lock'
     | '/api/public/bot-catalog'
     | '/api/public/bot-diagnose'
@@ -185,6 +206,7 @@ export interface FileRouteTypes {
     | '/api/public/bot-order'
     | '/api/public/bot-order-status'
     | '/api/public/bot-paused'
+    | '/api/public/bot-pdf'
     | '/api/public/bot-report-request'
     | '/api/public/bot-session'
     | '/api/public/bot-ticket'
@@ -194,6 +216,7 @@ export interface FileRouteTypes {
     | '__root__'
     | '/'
     | '/api/public/app-version'
+    | '/api/public/bot-agent'
     | '/api/public/bot-button-lock'
     | '/api/public/bot-catalog'
     | '/api/public/bot-diagnose'
@@ -202,6 +225,7 @@ export interface FileRouteTypes {
     | '/api/public/bot-order'
     | '/api/public/bot-order-status'
     | '/api/public/bot-paused'
+    | '/api/public/bot-pdf'
     | '/api/public/bot-report-request'
     | '/api/public/bot-session'
     | '/api/public/bot-ticket'
@@ -212,6 +236,7 @@ export interface FileRouteTypes {
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   ApiPublicAppVersionRoute: typeof ApiPublicAppVersionRoute
+  ApiPublicBotAgentRoute: typeof ApiPublicBotAgentRoute
   ApiPublicBotButtonLockRoute: typeof ApiPublicBotButtonLockRoute
   ApiPublicBotCatalogRoute: typeof ApiPublicBotCatalogRoute
   ApiPublicBotDiagnoseRoute: typeof ApiPublicBotDiagnoseRoute
@@ -220,6 +245,7 @@ export interface RootRouteChildren {
   ApiPublicBotOrderRoute: typeof ApiPublicBotOrderRoute
   ApiPublicBotOrderStatusRoute: typeof ApiPublicBotOrderStatusRoute
   ApiPublicBotPausedRoute: typeof ApiPublicBotPausedRoute
+  ApiPublicBotPdfRoute: typeof ApiPublicBotPdfRoute
   ApiPublicBotReportRequestRoute: typeof ApiPublicBotReportRequestRoute
   ApiPublicBotSessionRoute: typeof ApiPublicBotSessionRoute
   ApiPublicBotTicketRoute: typeof ApiPublicBotTicketRoute
@@ -241,6 +267,13 @@ declare module '@tanstack/react-router' {
       path: '/api/public/app-version'
       fullPath: '/api/public/app-version'
       preLoaderRoute: typeof ApiPublicAppVersionRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/api/public/bot-agent': {
+      id: '/api/public/bot-agent'
+      path: '/api/public/bot-agent'
+      fullPath: '/api/public/bot-agent'
+      preLoaderRoute: typeof ApiPublicBotAgentRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/api/public/bot-button-lock': {
@@ -299,6 +332,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ApiPublicBotPausedRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/api/public/bot-pdf': {
+      id: '/api/public/bot-pdf'
+      path: '/api/public/bot-pdf'
+      fullPath: '/api/public/bot-pdf'
+      preLoaderRoute: typeof ApiPublicBotPdfRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/api/public/bot-report-request': {
       id: '/api/public/bot-report-request'
       path: '/api/public/bot-report-request'
@@ -340,6 +380,7 @@ declare module '@tanstack/react-router' {
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   ApiPublicAppVersionRoute: ApiPublicAppVersionRoute,
+  ApiPublicBotAgentRoute: ApiPublicBotAgentRoute,
   ApiPublicBotButtonLockRoute: ApiPublicBotButtonLockRoute,
   ApiPublicBotCatalogRoute: ApiPublicBotCatalogRoute,
   ApiPublicBotDiagnoseRoute: ApiPublicBotDiagnoseRoute,
@@ -348,6 +389,7 @@ const rootRouteChildren: RootRouteChildren = {
   ApiPublicBotOrderRoute: ApiPublicBotOrderRoute,
   ApiPublicBotOrderStatusRoute: ApiPublicBotOrderStatusRoute,
   ApiPublicBotPausedRoute: ApiPublicBotPausedRoute,
+  ApiPublicBotPdfRoute: ApiPublicBotPdfRoute,
   ApiPublicBotReportRequestRoute: ApiPublicBotReportRequestRoute,
   ApiPublicBotSessionRoute: ApiPublicBotSessionRoute,
   ApiPublicBotTicketRoute: ApiPublicBotTicketRoute,

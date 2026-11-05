@@ -1,6 +1,6 @@
-// Field knowledge given to the AI support assistant (products ACTES sells).
+// Field knowledge given to the AI support assistant (products Tamken sells).
 export const SUPPORT_KB = `
-منتجات أكتس: إنفرترات Deye هجين جهد منخفض (سنجل SUN-8K/12K/16K-SG LP1، ثري SUN-12K-SG04LP3، SUN-16K/20K-SG05LP3)، إنفرترات Solis للمنظومات الكبيرة 50/80/125kW، بطاريات ليثيوم Hithium (HeroEE 16kWh 51.2V) وبطاريات جهد منخفض بروتوكول Pylontech، ألواح Suntech 720W N-Type ثنائية الوجه، صناديق حماية DC، لوحات AC، كنشات MC4.
+منتجات تمكين: إنفرترات Deye هجين جهد منخفض (سنجل SUN-8K/12K/16K-SG LP1، ثري SUN-12K-SG04LP3، SUN-16K/20K-SG05LP3)، إنفرترات Solis للمنظومات الكبيرة 50/80/125kW، بطاريات ليثيوم Hithium (HeroEE 16kWh 51.2V) وبطاريات جهد منخفض بروتوكول Pylontech، ألواح Suntech 720W N-Type ثنائية الوجه، صناديق حماية DC، لوحات AC، كنشات MC4.
 
 أكواد Deye الشائعة:
 F01/F02 قطبية مدخل DC معكوسة أو جهد عالٍ — افصل الألواح فوراً، يحتاج مهندس.
