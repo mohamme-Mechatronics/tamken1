@@ -3,7 +3,7 @@
 // highlight colour, Arabic brand name and tagline underneath. Non-highlight parts
 // use currentColor so the parent's text colour controls them (dark header bar vs.
 // light card). onDark swaps the highlight from navy to gold so the mark stays
-// readable on the dark bars; compact drops the tagline for tight rows like the header.
+// readable on the dark bars; compact keeps the tagline but shrinks it for tight rows like the header.
 
 export function BrandMark({ className = "", compact = false, onDark = false }: { className?: string; compact?: boolean; onDark?: boolean }) {
   const hi = onDark ? "text-accent" : "text-primary";
